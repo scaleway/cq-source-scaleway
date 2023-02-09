@@ -10,16 +10,27 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-func Rules() *schema.Table {
+func policyRules() *schema.Table {
 	return &schema.Table{
-		Name:      "scaleway_iam_rules",
-		Resolver:  fetchRules,
+		Name:      "scaleway_iam_policy_rules",
+		Resolver:  fetchPolicyRules,
 		Transform: transformers.TransformWithStruct(&iam.Rule{}, transformers.WithPrimaryKeys("ID")),
+		Columns: []schema.Column{
+			{
+				Name:     "policy_id",
+				Type:     schema.TypeString,
+				Resolver: schema.ParentColumnResolver("id"),
+				CreationOptions: schema.ColumnCreationOptions{
+					PrimaryKey: true,
+				},
+			},
+		},
 	}
 }
 
-func fetchRules(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
+func fetchPolicyRules(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
+	p := parent.Item.(*iam.Policy)
 	api := iam.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
@@ -27,6 +38,7 @@ func fetchRules(ctx context.Context, meta schema.ClientMeta, parent *schema.Reso
 
 	for {
 		response, err := api.ListRules(&iam.ListRulesRequest{
+			PolicyID: &p.ID,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

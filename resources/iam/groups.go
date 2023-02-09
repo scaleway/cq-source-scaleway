@@ -27,8 +27,9 @@ func fetchGroups(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListGroups(&iam.ListGroupsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

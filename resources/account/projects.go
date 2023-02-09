@@ -20,13 +20,13 @@ func Projects() *schema.Table {
 
 func fetchProjects(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
-	accountsApi := account.NewAPI(cl.SCWClient)
+	api := account.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
 	page := int32(1)
 
 	for {
-		response, err := accountsApi.ListProjects(&account.ListProjectsRequest{
+		response, err := api.ListProjects(&account.ListProjectsRequest{
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

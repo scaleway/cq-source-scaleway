@@ -12,6 +12,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/functions"
 	"github.com/scaleway/cq-source-scaleway/resources/iam"
 	"github.com/scaleway/cq-source-scaleway/resources/instances"
+	"github.com/scaleway/cq-source-scaleway/resources/iot"
 )
 
 var (
@@ -43,13 +44,16 @@ func Plugin() *source.Plugin {
 			iam.Groups(),
 			iam.PermissionSets(),
 			iam.Policies(),
-			iam.Rules(),
 			iam.SSHKeys(),
 			iam.Users(),
 			instances.DefaultSecurityGroupRules(),
 			instances.Images(),
 			instances.Instances(),
 			instances.SecurityGroups(),
+			iot.Devices(),
+			iot.Hubs(),
+			iot.Networks(),
+			iot.Routes(),
 		},
 		client.New,
 	)

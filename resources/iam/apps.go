@@ -27,8 +27,9 @@ func fetchApps(ctx context.Context, meta schema.ClientMeta, parent *schema.Resou
 
 	for {
 		response, err := api.ListApplications(&iam.ListApplicationsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

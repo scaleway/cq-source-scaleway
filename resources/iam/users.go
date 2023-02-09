@@ -27,8 +27,9 @@ func fetchUsers(ctx context.Context, meta schema.ClientMeta, parent *schema.Reso
 
 	for {
 		response, err := api.ListUsers(&iam.ListUsersRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

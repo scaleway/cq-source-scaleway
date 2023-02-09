@@ -15,6 +15,9 @@ func Policies() *schema.Table {
 		Name:      "scaleway_iam_policies",
 		Resolver:  fetchPolicies,
 		Transform: transformers.TransformWithStruct(&iam.Policy{}, transformers.WithPrimaryKeys("ID")),
+		Relations: []*schema.Table{
+			policyRules(),
+		},
 	}
 }
 
@@ -27,8 +30,9 @@ func fetchPolicies(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListPolicies(&iam.ListPoliciesRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

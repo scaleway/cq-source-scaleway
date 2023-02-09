@@ -22,34 +22,24 @@ func fetchInstances(ctx context.Context, meta schema.ClientMeta, parent *schema.
 	cl := meta.(*client.Client)
 	api := instance.NewAPI(cl.SCWClient)
 
-	for _, st := range []instance.ServerState{
-		instance.ServerStateRunning,
-		instance.ServerStateStarting,
-		instance.ServerStateStopping,
-		instance.ServerStateStopped,
-		instance.ServerStateStoppedInPlace,
-		instance.ServerStateLocked,
-	} {
-		limit := uint32(100)
-		page := int32(1)
+	limit := uint32(100)
+	page := int32(1)
 
-		for {
-			response, err := api.ListServers(&instance.ListServersRequest{
-				PerPage: &limit,
-				Page:    &page,
-				State:   &st,
-			}, scw.WithContext(ctx))
-			if err != nil {
-				return err
-			}
-
-			res <- response.Servers
-			if len(response.Servers) < int(limit) {
-				break
-			}
-
-			page++
+	for {
+		response, err := api.ListServers(&instance.ListServersRequest{
+			PerPage: &limit,
+			Page:    &page,
+		}, scw.WithContext(ctx))
+		if err != nil {
+			return err
 		}
+
+		res <- response.Servers
+		if len(response.Servers) < int(limit) {
+			break
+		}
+
+		page++
 	}
 
 	return nil
