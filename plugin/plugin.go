@@ -10,6 +10,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/containers"
 	"github.com/scaleway/cq-source-scaleway/resources/flexibleips"
 	"github.com/scaleway/cq-source-scaleway/resources/functions"
+	"github.com/scaleway/cq-source-scaleway/resources/iam"
 	"github.com/scaleway/cq-source-scaleway/resources/instances"
 )
 
@@ -24,10 +25,10 @@ func Plugin() *source.Plugin {
 		schema.Tables{
 			account.Projects(),
 			applesilicon.OS(),
-			applesilicon.Servers(),
 			applesilicon.ServerTypes(),
-			baremetal.Offers(),
+			applesilicon.Servers(),
 			baremetal.OS(),
+			baremetal.Offers(),
 			baremetal.Servers(),
 			containers.Containers(),
 			containers.Namespaces(),
@@ -37,6 +38,14 @@ func Plugin() *source.Plugin {
 			functions.Namespaces(),
 			functions.Runtimes(),
 			functions.Tokens(),
+			iam.APIKeys(),
+			iam.Apps(),
+			iam.Groups(),
+			iam.PermissionSets(),
+			iam.Policies(),
+			iam.Rules(),
+			iam.SSHKeys(),
+			iam.Users(),
 			instances.DefaultSecurityGroupRules(),
 			instances.Images(),
 			instances.Instances(),
