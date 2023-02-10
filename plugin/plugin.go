@@ -18,6 +18,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/lb"
 	"github.com/scaleway/cq-source-scaleway/resources/marketplace"
 	"github.com/scaleway/cq-source-scaleway/resources/mnq"
+	"github.com/scaleway/cq-source-scaleway/resources/rdb"
 )
 
 var (
@@ -70,6 +71,11 @@ func Plugin() *source.Plugin {
 			marketplace.Categories(),
 			marketplace.Images(),
 			mnq.Namespaces(),
+			rdb.DatabaseBackups(),
+			rdb.DatabaseEngines(),
+			rdb.Instances(),
+			rdb.InstanceSnapshots(),
+			rdb.NodeTypes(),
 		},
 		client.New,
 	)
