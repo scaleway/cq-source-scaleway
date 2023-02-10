@@ -23,6 +23,11 @@ The environment variables to set are:
 
 Env vars override config values if both are set. Default region and zone is assumed to be `fr-par` and `fr-par-1` respectively if not set.
 
+## Incremental Syncing
+
+The Scaleway plugin supports incremental syncing. This means that only new data will be fetched from Scaleway and loaded into your destination for supported tables (support depending on API endpoint). This is done by keeping track of the last item fetched and only fetching data that has been created since then.
+To enable this, `backend` option must be set in the spec (as shown below). This is documented in the [Managing Incremental Tables](https://www.cloudquery.io/docs/advanced-topics/managing-incremental-tables) section.
+
 ## Configuration
 
 The following source configuration file will sync all data from Scaleway to a PostgreSQL database. See [the CloudQuery Quickstart](https://www.cloudquery.io/docs/quickstart) for more information on how to configure the source and destination.
@@ -40,6 +45,7 @@ spec:
     - "scaleway_marketplace_image_versions"
   destinations: 
     - "postgresql"
+  backend: local
   spec:
     # plugin spec section
 ```

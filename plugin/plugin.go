@@ -22,6 +22,9 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/redis"
 	"github.com/scaleway/cq-source-scaleway/resources/registry"
 	"github.com/scaleway/cq-source-scaleway/resources/secrets"
+	"github.com/scaleway/cq-source-scaleway/resources/tem"
+	"github.com/scaleway/cq-source-scaleway/resources/vpc"
+	"github.com/scaleway/cq-source-scaleway/resources/vpcgw"
 )
 
 var (
@@ -85,6 +88,12 @@ func Plugin() *source.Plugin {
 			registry.Images(),
 			registry.Namespaces(),
 			secrets.Secrets(),
+			tem.Domains(),
+			vpc.PrivateNetworks(),
+			vpcgw.DHCPs(),
+			vpcgw.DHCPEntries(),
+			vpcgw.Gateways(),
+			vpcgw.IPs(),
 		},
 		client.New,
 	)
