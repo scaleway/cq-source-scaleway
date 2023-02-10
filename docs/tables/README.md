@@ -82,6 +82,7 @@
   - [scaleway_security_group_rules](scaleway_security_group_rules.md)
 - [scaleway_tem_domains](scaleway_tem_domains.md)
   - [scaleway_tem_emails](scaleway_tem_emails.md) (Incremental)
+- [scaleway_test_humans](scaleway_test_humans.md)
 - [scaleway_vpc_private_networks](scaleway_vpc_private_networks.md)
 - [scaleway_vpcgw_dhcp_entries](scaleway_vpcgw_dhcp_entries.md)
 - [scaleway_vpcgw_dhcps](scaleway_vpcgw_dhcps.md)

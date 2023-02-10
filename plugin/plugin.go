@@ -23,6 +23,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/registry"
 	"github.com/scaleway/cq-source-scaleway/resources/secrets"
 	"github.com/scaleway/cq-source-scaleway/resources/tem"
+	"github.com/scaleway/cq-source-scaleway/resources/test"
 	"github.com/scaleway/cq-source-scaleway/resources/vpc"
 	"github.com/scaleway/cq-source-scaleway/resources/vpcgw"
 )
@@ -89,6 +90,7 @@ func Plugin() *source.Plugin {
 			registry.Namespaces(),
 			secrets.Secrets(),
 			tem.Domains(),
+			test.Humans(),
 			vpc.PrivateNetworks(),
 			vpcgw.DHCPs(),
 			vpcgw.DHCPEntries(),
