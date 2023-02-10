@@ -13,6 +13,9 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/iam"
 	"github.com/scaleway/cq-source-scaleway/resources/instances"
 	"github.com/scaleway/cq-source-scaleway/resources/iot"
+	"github.com/scaleway/cq-source-scaleway/resources/ipfs"
+	"github.com/scaleway/cq-source-scaleway/resources/k8s"
+	"github.com/scaleway/cq-source-scaleway/resources/lb"
 )
 
 var (
@@ -54,6 +57,14 @@ func Plugin() *source.Plugin {
 			iot.Hubs(),
 			iot.Networks(),
 			iot.Routes(),
+			ipfs.Volumes(),
+			k8s.Clusters(),
+			k8s.Versions(),
+			lb.LBs(),
+			lb.LBTypes(),
+			lb.IPs(),
+			lb.Routes(),
+			lb.Subscribers(),
 		},
 		client.New,
 	)
