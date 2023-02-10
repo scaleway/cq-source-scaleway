@@ -70,5 +70,8 @@
   - [scaleway_rdb_users](scaleway_rdb_users.md)
 - [scaleway_rdb_node_types](scaleway_rdb_node_types.md)
 - [scaleway_rdb_snapshots](scaleway_rdb_snapshots.md)
+- [scaleway_redis_clusters](scaleway_redis_clusters.md)
+- [scaleway_redis_node_types](scaleway_redis_node_types.md)
+- [scaleway_redis_versions](scaleway_redis_versions.md)
 - [scaleway_security_groups](scaleway_security_groups.md)
   - [scaleway_security_group_rules](scaleway_security_group_rules.md)

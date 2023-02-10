@@ -19,6 +19,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/marketplace"
 	"github.com/scaleway/cq-source-scaleway/resources/mnq"
 	"github.com/scaleway/cq-source-scaleway/resources/rdb"
+	"github.com/scaleway/cq-source-scaleway/resources/redis"
 )
 
 var (
@@ -76,6 +77,9 @@ func Plugin() *source.Plugin {
 			rdb.Instances(),
 			rdb.Snapshots(),
 			rdb.NodeTypes(),
+			redis.Clusters(),
+			redis.Versions(),
+			redis.NodeTypes(),
 		},
 		client.New,
 	)
