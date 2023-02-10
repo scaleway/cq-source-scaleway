@@ -20,6 +20,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/mnq"
 	"github.com/scaleway/cq-source-scaleway/resources/rdb"
 	"github.com/scaleway/cq-source-scaleway/resources/redis"
+	"github.com/scaleway/cq-source-scaleway/resources/registry"
 )
 
 var (
@@ -80,6 +81,8 @@ func Plugin() *source.Plugin {
 			redis.Clusters(),
 			redis.Versions(),
 			redis.NodeTypes(),
+			registry.Images(),
+			registry.Namespaces(),
 		},
 		client.New,
 	)

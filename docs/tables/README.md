@@ -73,5 +73,8 @@
 - [scaleway_redis_clusters](scaleway_redis_clusters.md)
 - [scaleway_redis_node_types](scaleway_redis_node_types.md)
 - [scaleway_redis_versions](scaleway_redis_versions.md)
+- [scaleway_registry_images](scaleway_registry_images.md)
+  - [scaleway_registry_image_tags](scaleway_registry_image_tags.md)
+- [scaleway_registry_namespaces](scaleway_registry_namespaces.md)
 - [scaleway_security_groups](scaleway_security_groups.md)
   - [scaleway_security_group_rules](scaleway_security_group_rules.md)
