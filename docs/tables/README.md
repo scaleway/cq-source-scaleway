@@ -76,5 +76,7 @@
 - [scaleway_registry_images](scaleway_registry_images.md)
   - [scaleway_registry_image_tags](scaleway_registry_image_tags.md)
 - [scaleway_registry_namespaces](scaleway_registry_namespaces.md)
+- [scaleway_secrets](scaleway_secrets.md)
+  - [scaleway_secret_versions](scaleway_secret_versions.md)
 - [scaleway_security_groups](scaleway_security_groups.md)
   - [scaleway_security_group_rules](scaleway_security_group_rules.md)

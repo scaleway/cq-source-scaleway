@@ -21,6 +21,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/rdb"
 	"github.com/scaleway/cq-source-scaleway/resources/redis"
 	"github.com/scaleway/cq-source-scaleway/resources/registry"
+	"github.com/scaleway/cq-source-scaleway/resources/secrets"
 )
 
 var (
@@ -83,6 +84,7 @@ func Plugin() *source.Plugin {
 			redis.NodeTypes(),
 			registry.Images(),
 			registry.Namespaces(),
+			secrets.Secrets(),
 		},
 		client.New,
 	)
