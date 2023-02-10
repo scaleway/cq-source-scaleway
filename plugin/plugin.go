@@ -16,6 +16,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/ipfs"
 	"github.com/scaleway/cq-source-scaleway/resources/k8s"
 	"github.com/scaleway/cq-source-scaleway/resources/lb"
+	"github.com/scaleway/cq-source-scaleway/resources/marketplace"
 )
 
 var (
@@ -65,6 +66,8 @@ func Plugin() *source.Plugin {
 			lb.IPs(),
 			lb.Routes(),
 			lb.Subscribers(),
+			marketplace.Categories(),
+			marketplace.Images(),
 		},
 		client.New,
 	)

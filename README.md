@@ -35,7 +35,9 @@ spec:
   version: "${VERSION}"
   # backend: "local" # use this to enable incremental syncing
   tables: 
-    ["*"]
+    - "*"
+  skip_tables:
+    - "scaleway_marketplace_image_versions"
   destinations: 
     - "postgresql"
   spec:
