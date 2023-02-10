@@ -1,4 +1,4 @@
-# Table: scaleway_rdb_instance_snapshots
+# Table: scaleway_rdb_snapshots
 
 The primary key for this table is **id**.
 

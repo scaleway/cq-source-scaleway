@@ -10,15 +10,15 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-func InstanceSnapshots() *schema.Table {
+func Snapshots() *schema.Table {
 	return &schema.Table{
-		Name:      "scaleway_rdb_instance_snapshots",
-		Resolver:  fetchInstanceSnapshots,
+		Name:      "scaleway_rdb_snapshots",
+		Resolver:  fetchSnapshots,
 		Transform: transformers.TransformWithStruct(&rdb.Snapshot{}, transformers.WithPrimaryKeys("ID")),
 	}
 }
 
-func fetchInstanceSnapshots(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
+func fetchSnapshots(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
 	api := rdb.NewAPI(cl.SCWClient)
 

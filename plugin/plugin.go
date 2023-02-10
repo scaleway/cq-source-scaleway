@@ -74,7 +74,7 @@ func Plugin() *source.Plugin {
 			rdb.DatabaseBackups(),
 			rdb.DatabaseEngines(),
 			rdb.Instances(),
-			rdb.InstanceSnapshots(),
+			rdb.Snapshots(),
 			rdb.NodeTypes(),
 		},
 		client.New,
