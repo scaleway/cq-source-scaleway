@@ -58,6 +58,8 @@
 - [scaleway_marketplace_categories](scaleway_marketplace_categories.md)
 - [scaleway_marketplace_images](scaleway_marketplace_images.md)
   - [scaleway_marketplace_image_versions](scaleway_marketplace_image_versions.md)
+- [scaleway_mnq_namespaces](scaleway_mnq_namespaces.md)
+  - [scaleway_mnq_namespace_credentials](scaleway_mnq_namespace_credentials.md)
 - [scaleway_projects](scaleway_projects.md)
 - [scaleway_security_groups](scaleway_security_groups.md)
   - [scaleway_security_group_rules](scaleway_security_group_rules.md)

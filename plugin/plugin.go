@@ -17,6 +17,7 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/k8s"
 	"github.com/scaleway/cq-source-scaleway/resources/lb"
 	"github.com/scaleway/cq-source-scaleway/resources/marketplace"
+	"github.com/scaleway/cq-source-scaleway/resources/mnq"
 )
 
 var (
@@ -68,6 +69,7 @@ func Plugin() *source.Plugin {
 			lb.Subscribers(),
 			marketplace.Categories(),
 			marketplace.Images(),
+			mnq.Namespaces(),
 		},
 		client.New,
 	)
