@@ -18,7 +18,7 @@ func Offers() *schema.Table {
 		Columns: schema.ColumnList{
 			client.ZonePK,
 		},
-		Multiplex: client.ZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("baremetal"),
 	}
 }
 

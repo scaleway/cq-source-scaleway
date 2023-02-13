@@ -15,7 +15,7 @@ func Versions() *schema.Table {
 		Name:      "scaleway_redis_versions",
 		Resolver:  fetchVersions,
 		Transform: transformers.TransformWithStruct(&redis.ClusterVersion{}, transformers.WithPrimaryKeys("Version", "Zone")),
-		Multiplex: client.ZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("redis"),
 	}
 }
 

@@ -15,7 +15,7 @@ func NodeTypes() *schema.Table {
 		Name:      "scaleway_redis_node_types",
 		Resolver:  fetchNodeTypes,
 		Transform: transformers.TransformWithStruct(&redis.NodeType{}, transformers.WithPrimaryKeys("Name", "Zone")),
-		Multiplex: client.ZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("redis"),
 	}
 }
 
