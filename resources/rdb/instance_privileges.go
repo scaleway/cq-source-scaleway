@@ -35,6 +35,7 @@ func fetchInstancePrivileges(ctx context.Context, meta schema.ClientMeta, parent
 
 	for {
 		response, err := api.ListPrivileges(&rdb.ListPrivilegesRequest{
+			Region:     p.Region,
 			InstanceID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

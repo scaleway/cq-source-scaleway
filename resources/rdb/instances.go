@@ -15,6 +15,7 @@ func Instances() *schema.Table {
 		Name:      "scaleway_rdb_instances",
 		Resolver:  fetchInstances,
 		Transform: transformers.TransformWithStruct(&rdb.Instance{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 		Relations: []*schema.Table{
 			instanceACLRules(),
 			instanceDatabases(),
@@ -33,6 +34,7 @@ func fetchInstances(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListInstances(&rdb.ListInstancesRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

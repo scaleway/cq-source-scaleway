@@ -15,6 +15,7 @@ func Snapshots() *schema.Table {
 		Name:      "scaleway_rdb_snapshots",
 		Resolver:  fetchSnapshots,
 		Transform: transformers.TransformWithStruct(&rdb.Snapshot{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchSnapshots(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListSnapshots(&rdb.ListSnapshotsRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

@@ -15,6 +15,7 @@ func DatabaseBackups() *schema.Table {
 		Name:      "scaleway_rdb_database_backups",
 		Resolver:  fetchDatabaseBackups,
 		Transform: transformers.TransformWithStruct(&rdb.DatabaseBackup{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchDatabaseBackups(ctx context.Context, meta schema.ClientMeta, parent *s
 
 	for {
 		response, err := api.ListDatabaseBackups(&rdb.ListDatabaseBackupsRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

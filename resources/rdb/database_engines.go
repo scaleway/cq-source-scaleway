@@ -15,6 +15,7 @@ func DatabaseEngines() *schema.Table {
 		Name:      "scaleway_rdb_database_engines",
 		Resolver:  fetchDatabaseEngines,
 		Transform: transformers.TransformWithStruct(&rdb.DatabaseEngine{}, transformers.WithPrimaryKeys("Name", "Region")),
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchDatabaseEngines(ctx context.Context, meta schema.ClientMeta, parent *s
 
 	for {
 		response, err := api.ListDatabaseEngines(&rdb.ListDatabaseEnginesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

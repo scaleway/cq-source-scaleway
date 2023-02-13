@@ -35,6 +35,7 @@ func fetchInstanceACLRules(ctx context.Context, meta schema.ClientMeta, parent *
 
 	for {
 		response, err := api.ListInstanceACLRules(&rdb.ListInstanceACLRulesRequest{
+			Region:     p.Region,
 			InstanceID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

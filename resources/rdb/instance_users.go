@@ -35,6 +35,7 @@ func fetchUsers(ctx context.Context, meta schema.ClientMeta, parent *schema.Reso
 
 	for {
 		response, err := api.ListUsers(&rdb.ListUsersRequest{
+			Region:     p.Region,
 			InstanceID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

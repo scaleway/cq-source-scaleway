@@ -15,6 +15,7 @@ func NodeTypes() *schema.Table {
 		Name:      "scaleway_rdb_node_types",
 		Resolver:  fetchNodeTypes,
 		Transform: transformers.TransformWithStruct(&rdb.NodeType{}, transformers.WithPrimaryKeys("Name", "Region")),
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchNodeTypes(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListNodeTypes(&rdb.ListNodeTypesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

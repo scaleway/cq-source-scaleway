@@ -35,6 +35,7 @@ func fetchDatabases(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListDatabases(&rdb.ListDatabasesRequest{
+			Region:     p.Region,
 			InstanceID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,
