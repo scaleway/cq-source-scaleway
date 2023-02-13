@@ -15,7 +15,7 @@ func DatabaseBackups() *schema.Table {
 		Name:      "scaleway_rdb_database_backups",
 		Resolver:  fetchDatabaseBackups,
 		Transform: transformers.TransformWithStruct(&rdb.DatabaseBackup{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 	}
 }
 

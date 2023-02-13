@@ -15,7 +15,7 @@ func Subscribers() *schema.Table {
 		Name:      "scaleway_lb_subscribers",
 		Resolver:  fetchSubscribers,
 		Transform: transformers.TransformWithStruct(&lb.Subscriber{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 	}
 }
 

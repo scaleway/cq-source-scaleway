@@ -15,7 +15,6 @@ func SSHKeys() *schema.Table {
 		Name:      "scaleway_iam_ssh_keys",
 		Resolver:  fetchSSHKeys,
 		Transform: transformers.TransformWithStruct(&iam.SSHKey{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 

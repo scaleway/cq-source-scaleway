@@ -15,7 +15,7 @@ func Instances() *schema.Table {
 		Name:      "scaleway_rdb_instances",
 		Resolver:  fetchInstances,
 		Transform: transformers.TransformWithStruct(&rdb.Instance{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			instanceACLRules(),
 			instanceDatabases(),

@@ -15,7 +15,7 @@ func FlexibleIPs() *schema.Table {
 		Name:      "scaleway_flexible_ips",
 		Resolver:  fetchIPs,
 		Transform: transformers.TransformWithStruct(&flexibleip.FlexibleIP{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("flexibleip"),
 	}
 }
 

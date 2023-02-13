@@ -15,7 +15,6 @@ func APIKeys() *schema.Table {
 		Name:      "scaleway_iam_api_keys",
 		Resolver:  fetchAPIKeys,
 		Transform: transformers.TransformWithStruct(&iam.APIKey{}, transformers.WithPrimaryKeys("AccessKey")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 

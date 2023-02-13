@@ -15,7 +15,6 @@ func Projects() *schema.Table {
 		Name:      "scaleway_projects",
 		Resolver:  fetchProjects,
 		Transform: transformers.TransformWithStruct(&account.Project{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 

@@ -15,7 +15,7 @@ func LBs() *schema.Table {
 		Name:      "scaleway_lbs",
 		Resolver:  fetchLBs,
 		Transform: transformers.TransformWithStruct(&lb.LB{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			lbBackends(),
 			lbBackendStats(),

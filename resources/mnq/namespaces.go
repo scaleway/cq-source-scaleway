@@ -15,7 +15,7 @@ func Namespaces() *schema.Table {
 		Name:      "scaleway_mnq_namespaces",
 		Resolver:  fetchNamespaces,
 		Transform: transformers.TransformWithStruct(&mnq.Namespace{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplexService("mnq"),
 		Relations: []*schema.Table{
 			namespaceCredentials(),
 		},

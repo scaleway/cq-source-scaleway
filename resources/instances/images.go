@@ -15,7 +15,7 @@ func Images() *schema.Table {
 		Name:      "scaleway_images",
 		Resolver:  fetchImages,
 		Transform: transformers.TransformWithStruct(&instance.Image{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 

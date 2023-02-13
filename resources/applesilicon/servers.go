@@ -15,7 +15,7 @@ func Servers() *schema.Table {
 		Name:      "scaleway_applesilicon_servers",
 		Resolver:  fetchServers,
 		Transform: transformers.TransformWithStruct(&applesilicon.Server{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("applesilicon"),
 	}
 }
 

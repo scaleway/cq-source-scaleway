@@ -16,7 +16,6 @@ func Runtimes() *schema.Table {
 		Resolver:  fetchRuntimes,
 		Transform: transformers.TransformWithStruct(&function.Runtime{}, transformers.WithPrimaryKeys("Name")),
 		Columns: schema.ColumnList{
-			client.OrgPK,
 			client.RegionPK,
 		},
 		Multiplex: client.RegionMultiplex,

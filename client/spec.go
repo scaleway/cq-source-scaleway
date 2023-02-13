@@ -3,7 +3,6 @@ package client
 import "github.com/scaleway/scaleway-sdk-go/scw"
 
 type Spec struct {
-	OrgIDs  []string     `json:"org_ids,omitempty"`
 	Regions []scw.Region `json:"regions,omitempty"`
 	Zones   []scw.Zone   `json:"zones,omitempty"`
 

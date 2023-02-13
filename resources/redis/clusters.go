@@ -15,7 +15,7 @@ func Clusters() *schema.Table {
 		Name:      "scaleway_redis_clusters",
 		Resolver:  fetchClusters,
 		Transform: transformers.TransformWithStruct(&redis.Cluster{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("redis"),
 	}
 }
 

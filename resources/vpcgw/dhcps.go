@@ -15,7 +15,7 @@ func DHCPs() *schema.Table {
 		Name:      "scaleway_vpcgw_dhcps",
 		Resolver:  fetchDHCPs,
 		Transform: transformers.TransformWithStruct(&vpcgw.DHCP{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("vpcgw"),
 	}
 }
 

@@ -15,7 +15,7 @@ func Snapshots() *schema.Table {
 		Name:      "scaleway_rdb_snapshots",
 		Resolver:  fetchSnapshots,
 		Transform: transformers.TransformWithStruct(&rdb.Snapshot{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 	}
 }
 

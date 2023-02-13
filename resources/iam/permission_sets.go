@@ -15,7 +15,6 @@ func PermissionSets() *schema.Table {
 		Name:      "scaleway_iam_permission_sets",
 		Resolver:  fetchPermissionSets,
 		Transform: transformers.TransformWithStruct(&iam.PermissionSet{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 

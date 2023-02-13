@@ -15,7 +15,7 @@ func Hubs() *schema.Table {
 		Name:      "scaleway_iot_hubs",
 		Resolver:  fetchHubs,
 		Transform: transformers.TransformWithStruct(&iot.Hub{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplexService("iot"),
 		Relations: []*schema.Table{
 			devices(),
 			networks(),

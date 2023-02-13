@@ -15,7 +15,7 @@ func Instances() *schema.Table {
 		Name:      "scaleway_instances",
 		Resolver:  fetchInstances,
 		Transform: transformers.TransformWithStruct(&instance.Server{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 

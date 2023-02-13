@@ -7,15 +7,6 @@ import (
 )
 
 var (
-	OrgPK = schema.Column{
-		Name:     "org_id",
-		Type:     schema.TypeString,
-		Resolver: ResolveClientOrg,
-		CreationOptions: schema.ColumnCreationOptions{
-			PrimaryKey: true,
-		},
-	}
-
 	ZonePK = schema.Column{
 		Name:     "zone",
 		Type:     schema.TypeString,
@@ -34,11 +25,6 @@ var (
 		},
 	}
 )
-
-func ResolveClientOrg(_ context.Context, meta schema.ClientMeta, r *schema.Resource, c schema.Column) error {
-	cl := meta.(*Client)
-	return r.Set(c.Name, cl.OrgID)
-}
 
 func ResolveClientZone(_ context.Context, meta schema.ClientMeta, r *schema.Resource, c schema.Column) error {
 	cl := meta.(*Client)

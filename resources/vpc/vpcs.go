@@ -15,7 +15,7 @@ func PrivateNetworks() *schema.Table {
 		Name:      "scaleway_vpc_private_networks",
 		Resolver:  fetchVPCs,
 		Transform: transformers.TransformWithStruct(&vpc.PrivateNetwork{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 

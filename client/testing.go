@@ -47,9 +47,7 @@ func TestHelper(t *testing.T, table *schema.Table, createServices func(*mux.Rout
 		if err != nil {
 			return nil, err
 		}
-		s := Spec{
-			OrgIDs: []string{TestOrgID},
-		}
+		s := Spec{}
 		s.SetDefaults()
 		if err := s.Validate(); err != nil {
 			return nil, err

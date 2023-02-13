@@ -15,7 +15,7 @@ func Namespaces() *schema.Table {
 		Name:      "scaleway_registry_namespaces",
 		Resolver:  fetchNamespaces,
 		Transform: transformers.TransformWithStruct(&registry.Namespace{}, transformers.WithPrimaryKeys("ID", "Region")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 	}
 }
 

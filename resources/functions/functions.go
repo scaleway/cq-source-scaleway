@@ -15,7 +15,7 @@ func Functions() *schema.Table {
 		Name:      "scaleway_functions",
 		Resolver:  fetchFunctions,
 		Transform: transformers.TransformWithStruct(&function.Function{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			functionCrons(),
 			functionDomains(),

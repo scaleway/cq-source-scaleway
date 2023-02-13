@@ -15,7 +15,7 @@ func IPs() *schema.Table {
 		Name:      "scaleway_lb_ips",
 		Resolver:  fetchLBIPs,
 		Transform: transformers.TransformWithStruct(&lb.IP{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 	}
 }
 

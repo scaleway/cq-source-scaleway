@@ -15,7 +15,6 @@ func Policies() *schema.Table {
 		Name:      "scaleway_iam_policies",
 		Resolver:  fetchPolicies,
 		Transform: transformers.TransformWithStruct(&iam.Policy{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 		Relations: []*schema.Table{
 			policyRules(),
 		},

@@ -15,7 +15,7 @@ func Servers() *schema.Table {
 		Name:      "scaleway_baremetal_servers",
 		Resolver:  fetchServers,
 		Transform: transformers.TransformWithStruct(&baremetal.Server{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplexService("baremetal"),
 	}
 }
 

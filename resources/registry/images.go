@@ -15,7 +15,7 @@ func Images() *schema.Table {
 		Name:      "scaleway_registry_images",
 		Resolver:  fetchImages,
 		Transform: transformers.TransformWithStruct(&registry.Image{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			imageTags(),
 		},

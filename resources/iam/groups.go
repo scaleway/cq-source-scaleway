@@ -15,7 +15,6 @@ func Groups() *schema.Table {
 		Name:      "scaleway_iam_groups",
 		Resolver:  fetchGroups,
 		Transform: transformers.TransformWithStruct(&iam.Group{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 

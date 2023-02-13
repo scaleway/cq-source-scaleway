@@ -15,7 +15,7 @@ func SecurityGroups() *schema.Table {
 		Name:      "scaleway_security_groups",
 		Resolver:  fetchSecurityGroups,
 		Transform: transformers.TransformWithStruct(&instance.SecurityGroup{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgZoneMultiplex,
+		Multiplex: client.ZoneMultiplex,
 		Relations: []*schema.Table{
 			securityGroupRules(),
 		},

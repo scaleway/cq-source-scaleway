@@ -28,20 +28,7 @@ type Client struct {
 }
 
 func (c *Client) ID() string {
-	return c.sourceSpec.Name + ":" + string(c.Region) + ":" + string(c.Zone) + ":" + c.OrgID
-}
-
-func (c *Client) WithOrg(o string) *Client {
-	return &Client{
-		Logger:     c.Logger.With().Str("org_id", o).Logger(),
-		SCWClient:  c.SCWClient,
-		Backend:    c.Backend,
-		OrgID:      o,
-		Region:     c.Region,
-		Zone:       c.Zone,
-		Spec:       c.Spec,
-		sourceSpec: c.sourceSpec,
-	}
+	return c.sourceSpec.Name + ":" + string(c.Region) + ":" + string(c.Zone)
 }
 
 func (c *Client) WithRegion(r scw.Region) *Client {
@@ -113,20 +100,10 @@ func New(_ context.Context, logger zerolog.Logger, s specs.Source, opts source.O
 		return nil, err
 	}
 
-	if _, ok := scwClient.GetDefaultOrganizationID(); !ok && len(pluginSpec.OrgIDs) > 0 {
-		// get default from spec
-		scwOpts = append(scwOpts, scw.WithDefaultOrganizationID(pluginSpec.OrgIDs[0]))
-		scwClient, err = scw.NewClient(scwOpts...)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	if _, ok := scwClient.GetDefaultOrganizationID(); !ok {
+	orgID, ok := scwClient.GetDefaultOrganizationID()
+	if !ok {
 		return nil, fmt.Errorf("SCW_DEFAULT_ORGANIZATION_ID or default_organization_id not set, get yours from https://console.scaleway.com/organization/settings")
 	}
-
-	orgID, _ := scwClient.GetDefaultOrganizationID()
 
 	return &Client{
 		Logger:     logger,

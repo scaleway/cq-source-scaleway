@@ -15,7 +15,7 @@ func Clusters() *schema.Table {
 		Name:      "scaleway_k8s_clusters",
 		Resolver:  fetchClusters,
 		Transform: transformers.TransformWithStruct(&k8s.Cluster{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			clusterAvailableVersions(),
 			clusterNodes(),

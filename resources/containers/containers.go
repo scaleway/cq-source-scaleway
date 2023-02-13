@@ -15,7 +15,7 @@ func Containers() *schema.Table {
 		Name:      "scaleway_containers",
 		Resolver:  fetchContainers,
 		Transform: transformers.TransformWithStruct(&container.Container{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgRegionMultiplex,
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			containerCrons(),
 			containerDomains(),

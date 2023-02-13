@@ -21,7 +21,7 @@ The environment variables to set are:
   - `SCW_SECRET_KEY`
   - `SCW_DEFAULT_ORGANIZATION_ID`
 
-Env vars override config values if both are set. Default region and zone is assumed to be `fr-par` and `fr-par-1` respectively if not set.
+Env vars override config values if both are set. By default all regions and zones are queried.
 
 ## Incremental Syncing
 
@@ -42,6 +42,7 @@ spec:
   tables: 
     - "*"
   skip_tables:
+    - "scaleway_ipfs_volumes"
     - "scaleway_marketplace_image_versions"
   destinations: 
     - "postgresql"
@@ -52,13 +53,10 @@ spec:
 
 ### Plugin Spec
 
-- `org_ids` (list of string, required. Default is set to the value of `SCW_DEFAULT_ORGANIZATION_ID` env variable):
-  List of organizations to query.
-
-- `regions` (list of string, optional. Default: `fr-par`):
+- `regions` (list of string, optional. Defaults to all regions):
   List of regions to query.
 
-- `zones` (list of string, optional. Default: `fr-par-1`):
+- `zones` (list of string, optional. Defaults to all zones):
   List of zones to query.
 
 - `timeout_secs` (integer in seconds, optional. Default: 10):

@@ -15,7 +15,6 @@ func Apps() *schema.Table {
 		Name:      "scaleway_iam_apps",
 		Resolver:  fetchApps,
 		Transform: transformers.TransformWithStruct(&iam.Application{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.OrgMultiplex,
 	}
 }
 
