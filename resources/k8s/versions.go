@@ -15,6 +15,7 @@ func Versions() *schema.Table {
 		Name:      "scaleway_k8s_versions",
 		Resolver:  fetchVersions,
 		Transform: transformers.TransformWithStruct(&k8s.Version{}, transformers.WithPrimaryKeys("Name", "Region")),
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -22,7 +23,9 @@ func fetchVersions(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 	cl := meta.(*client.Client)
 	api := k8s.NewAPI(cl.SCWClient)
 
-	response, err := api.ListVersions(&k8s.ListVersionsRequest{}, scw.WithContext(ctx))
+	response, err := api.ListVersions(&k8s.ListVersionsRequest{
+		Region: cl.Region,
+	}, scw.WithContext(ctx))
 	if err != nil {
 		return err
 	}

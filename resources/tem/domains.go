@@ -15,6 +15,7 @@ func Domains() *schema.Table {
 		Name:      "scaleway_tem_domains",
 		Resolver:  fetchDomains,
 		Transform: transformers.TransformWithStruct(&tem.Domain{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			domainEmails(),
 		},
@@ -30,6 +31,7 @@ func fetchDomains(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListDomains(&tem.ListDomainsRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

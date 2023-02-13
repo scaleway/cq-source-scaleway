@@ -15,6 +15,7 @@ func DefaultSecurityGroupRules() *schema.Table {
 		Name:      "scaleway_default_security_group_rules",
 		Resolver:  fetchDefaultSecurityGroupRules,
 		Transform: transformers.TransformWithStruct(&instance.SecurityGroupRule{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -22,7 +23,9 @@ func fetchDefaultSecurityGroupRules(ctx context.Context, meta schema.ClientMeta,
 	cl := meta.(*client.Client)
 	api := instance.NewAPI(cl.SCWClient)
 
-	response, err := api.ListDefaultSecurityGroupRules(&instance.ListDefaultSecurityGroupRulesRequest{}, scw.WithContext(ctx))
+	response, err := api.ListDefaultSecurityGroupRules(&instance.ListDefaultSecurityGroupRulesRequest{
+		Zone: cl.Zone,
+	}, scw.WithContext(ctx))
 	if err != nil {
 		return err
 	}

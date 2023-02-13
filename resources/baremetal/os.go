@@ -18,6 +18,7 @@ func OS() *schema.Table {
 		Columns: schema.ColumnList{
 			client.ZonePK,
 		},
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -30,6 +31,7 @@ func fetchOS(ctx context.Context, meta schema.ClientMeta, parent *schema.Resourc
 
 	for {
 		response, err := api.ListOS(&baremetal.ListOSRequest{
+			Zone:     cl.Zone,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

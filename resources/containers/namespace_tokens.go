@@ -10,7 +10,7 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-func Tokens() *schema.Table {
+func namespaceTokens() *schema.Table {
 	return &schema.Table{
 		Name:      "scaleway_container_tokens",
 		Resolver:  fetchTokens,
@@ -20,6 +20,7 @@ func Tokens() *schema.Table {
 
 func fetchTokens(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
+	p := parent.Item.(*container.Namespace)
 	api := container.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
@@ -27,8 +28,10 @@ func fetchTokens(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListTokens(&container.ListTokensRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:      p.Region,
+			NamespaceID: &p.ID,
+			PageSize:    &limit,
+			Page:        &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

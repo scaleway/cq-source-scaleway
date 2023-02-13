@@ -15,6 +15,7 @@ func Volumes() *schema.Table {
 		Name:      "scaleway_ipfs_volumes",
 		Resolver:  fetchVolumes,
 		Transform: transformers.TransformWithStruct(&ipfs.Volume{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			volumePins(),
 		},
@@ -30,6 +31,7 @@ func fetchVolumes(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListVolumes(&ipfs.ListVolumesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

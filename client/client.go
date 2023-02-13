@@ -20,18 +20,54 @@ type Client struct {
 	SCWClient *scw.Client
 	Backend   backend.Backend
 	OrgID     string
+	Region    scw.Region
+	Zone      scw.Zone
 
 	Spec       Spec
 	sourceSpec specs.Source
 }
 
-const (
-	defaultRegion = "fr-par"
-	defaultZone   = "fr-par-1"
-)
-
 func (c *Client) ID() string {
-	return c.sourceSpec.Name
+	return c.sourceSpec.Name + ":" + string(c.Region) + ":" + string(c.Zone) + ":" + c.OrgID
+}
+
+func (c *Client) WithOrg(o string) *Client {
+	return &Client{
+		Logger:     c.Logger.With().Str("org_id", o).Logger(),
+		SCWClient:  c.SCWClient,
+		Backend:    c.Backend,
+		OrgID:      o,
+		Region:     c.Region,
+		Zone:       c.Zone,
+		Spec:       c.Spec,
+		sourceSpec: c.sourceSpec,
+	}
+}
+
+func (c *Client) WithRegion(r scw.Region) *Client {
+	return &Client{
+		Logger:     c.Logger.With().Str("region", string(r)).Logger(),
+		SCWClient:  c.SCWClient,
+		Backend:    c.Backend,
+		OrgID:      c.OrgID,
+		Region:     r,
+		Zone:       c.Zone,
+		Spec:       c.Spec,
+		sourceSpec: c.sourceSpec,
+	}
+}
+
+func (c *Client) WithZone(z scw.Zone) *Client {
+	return &Client{
+		Logger:     c.Logger.With().Str("zone", string(z)).Logger(),
+		SCWClient:  c.SCWClient,
+		Backend:    c.Backend,
+		OrgID:      c.OrgID,
+		Region:     c.Region,
+		Zone:       z,
+		Spec:       c.Spec,
+		sourceSpec: c.sourceSpec,
+	}
 }
 
 func New(_ context.Context, logger zerolog.Logger, s specs.Source, opts source.Options) (schema.ClientMeta, error) {
@@ -77,27 +113,17 @@ func New(_ context.Context, logger zerolog.Logger, s specs.Source, opts source.O
 		return nil, err
 	}
 
-	if _, ok := scwClient.GetDefaultOrganizationID(); !ok {
-		return nil, fmt.Errorf("SCW_DEFAULT_ORGANIZATION_ID or default_organization_id not set, get yours from https://console.scaleway.com/organization/settings")
-	}
-
-	reinit := false
-	if _, ok := scwClient.GetDefaultRegion(); !ok {
-		logger.Log().Msg("SCW_DEFAULT_REGION or default_region not set, assuming " + defaultRegion)
-		scwOpts = append(scwOpts, scw.WithDefaultRegion(defaultRegion))
-		reinit = true
-	}
-	if _, ok := scwClient.GetDefaultZone(); !ok {
-		logger.Log().Msg("SCW_DEFAULT_ZONE or default_zone not set, assuming " + defaultZone)
-		scwOpts = append(scwOpts, scw.WithDefaultZone(defaultZone))
-		reinit = true
-	}
-
-	if reinit {
+	if _, ok := scwClient.GetDefaultOrganizationID(); !ok && len(pluginSpec.OrgIDs) > 0 {
+		// get default from spec
+		scwOpts = append(scwOpts, scw.WithDefaultOrganizationID(pluginSpec.OrgIDs[0]))
 		scwClient, err = scw.NewClient(scwOpts...)
 		if err != nil {
 			return nil, err
 		}
+	}
+
+	if _, ok := scwClient.GetDefaultOrganizationID(); !ok {
+		return nil, fmt.Errorf("SCW_DEFAULT_ORGANIZATION_ID or default_organization_id not set, get yours from https://console.scaleway.com/organization/settings")
 	}
 
 	orgID, _ := scwClient.GetDefaultOrganizationID()

@@ -31,6 +31,7 @@ func fetchClusterAvailableVersions(ctx context.Context, meta schema.ClientMeta, 
 	api := k8s.NewAPI(cl.SCWClient)
 
 	response, err := api.ListClusterAvailableVersions(&k8s.ListClusterAvailableVersionsRequest{
+		Region:    p.Region,
 		ClusterID: p.ID,
 	}, scw.WithContext(ctx))
 	if err != nil {

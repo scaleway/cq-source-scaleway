@@ -7,6 +7,15 @@ import (
 )
 
 var (
+	OrgPK = schema.Column{
+		Name:     "org_id",
+		Type:     schema.TypeString,
+		Resolver: ResolveClientOrg,
+		CreationOptions: schema.ColumnCreationOptions{
+			PrimaryKey: true,
+		},
+	}
+
 	ZonePK = schema.Column{
 		Name:     "zone",
 		Type:     schema.TypeString,
@@ -26,20 +35,17 @@ var (
 	}
 )
 
+func ResolveClientOrg(_ context.Context, meta schema.ClientMeta, r *schema.Resource, c schema.Column) error {
+	cl := meta.(*Client)
+	return r.Set(c.Name, cl.OrgID)
+}
+
 func ResolveClientZone(_ context.Context, meta schema.ClientMeta, r *schema.Resource, c schema.Column) error {
 	cl := meta.(*Client)
-	val, ok := cl.SCWClient.GetDefaultZone()
-	if !ok {
-		return r.Set(c.Name, nil)
-	}
-	return r.Set(c.Name, val.String())
+	return r.Set(c.Name, cl.Zone)
 }
 
 func ResolveClientRegion(_ context.Context, meta schema.ClientMeta, r *schema.Resource, c schema.Column) error {
 	cl := meta.(*Client)
-	val, ok := cl.SCWClient.GetDefaultRegion()
-	if !ok {
-		return r.Set(c.Name, nil)
-	}
-	return r.Set(c.Name, val.String())
+	return r.Set(c.Name, cl.Region)
 }

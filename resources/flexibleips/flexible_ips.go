@@ -15,6 +15,7 @@ func FlexibleIPs() *schema.Table {
 		Name:      "scaleway_flexible_ips",
 		Resolver:  fetchIPs,
 		Transform: transformers.TransformWithStruct(&flexibleip.FlexibleIP{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,8 +28,10 @@ func fetchIPs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resour
 
 	for {
 		response, err := api.ListFlexibleIPs(&flexibleip.ListFlexibleIPsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Zone:           cl.Zone,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

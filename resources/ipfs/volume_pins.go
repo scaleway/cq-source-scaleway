@@ -38,6 +38,7 @@ func fetchVolumePins(ctx context.Context, meta schema.ClientMeta, parent *schema
 
 	for {
 		response, err := api.ListPins(&ipfs.ListPinsRequest{
+			Region:   p.Region,
 			VolumeID: p.ID,
 			PageSize: &limit,
 			Page:     &page,

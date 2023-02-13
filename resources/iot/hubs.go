@@ -15,6 +15,7 @@ func Hubs() *schema.Table {
 		Name:      "scaleway_iot_hubs",
 		Resolver:  fetchHubs,
 		Transform: transformers.TransformWithStruct(&iot.Hub{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 	}
 }
 
@@ -27,8 +28,10 @@ func fetchHubs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resou
 
 	for {
 		response, err := api.ListHubs(&iot.ListHubsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

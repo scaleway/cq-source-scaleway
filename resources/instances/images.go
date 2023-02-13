@@ -15,6 +15,7 @@ func Images() *schema.Table {
 		Name:      "scaleway_images",
 		Resolver:  fetchImages,
 		Transform: transformers.TransformWithStruct(&instance.Image{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,8 +28,10 @@ func fetchImages(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListImages(&instance.ListImagesRequest{
-			PerPage: &limit,
-			Page:    &page,
+			Zone:         cl.Zone,
+			Organization: &cl.OrgID,
+			PerPage:      &limit,
+			Page:         &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

@@ -28,6 +28,7 @@ func fetchCredentials(ctx context.Context, meta schema.ClientMeta, parent *schem
 
 	for {
 		response, err := api.ListCredentials(&mnq.ListCredentialsRequest{
+			Region:      p.Region,
 			NamespaceID: &p.ID,
 			PageSize:    &limit,
 			Page:        &page,

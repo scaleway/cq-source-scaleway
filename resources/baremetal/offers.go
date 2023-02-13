@@ -18,6 +18,7 @@ func Offers() *schema.Table {
 		Columns: schema.ColumnList{
 			client.ZonePK,
 		},
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -30,6 +31,7 @@ func fetchOffers(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListOffers(&baremetal.ListOffersRequest{
+			Zone:     cl.Zone,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

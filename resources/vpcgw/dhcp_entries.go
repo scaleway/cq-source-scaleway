@@ -15,6 +15,7 @@ func DHCPEntries() *schema.Table {
 		Name:      "scaleway_vpcgw_dhcp_entries",
 		Resolver:  fetchDHCPEntries,
 		Transform: transformers.TransformWithStruct(&vpcgw.DHCPEntry{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchDHCPEntries(ctx context.Context, meta schema.ClientMeta, parent *schem
 
 	for {
 		response, err := api.ListDHCPEntries(&vpcgw.ListDHCPEntriesRequest{
+			Zone:     cl.Zone,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

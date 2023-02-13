@@ -15,6 +15,7 @@ func LBTypes() *schema.Table {
 		Name:      "scaleway_lb_types",
 		Resolver:  fetchLBTypes,
 		Transform: transformers.TransformWithStruct(&lb.LBType{}, transformers.WithPrimaryKeys("Name", "Region")),
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchLBTypes(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListLBTypes(&lb.ListLBTypesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

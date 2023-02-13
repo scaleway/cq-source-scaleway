@@ -2,6 +2,7 @@ package lb
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/cloudquery/plugin-sdk/schema"
 	"github.com/cloudquery/plugin-sdk/transformers"
@@ -36,8 +37,14 @@ func fetchLBCertificates(ctx context.Context, meta schema.ClientMeta, parent *sc
 	limit := uint32(100)
 	page := int32(1)
 
+	reg, err := p.Zone.Region()
+	if err != nil {
+		return fmt.Errorf("invalid region: %w", err)
+	}
+
 	for {
 		response, err := api.ListCertificates(&lb.ListCertificatesRequest{
+			Region:   reg,
 			LBID:     p.ID,
 			PageSize: &limit,
 			Page:     &page,

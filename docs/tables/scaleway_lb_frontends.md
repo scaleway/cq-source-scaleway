@@ -8,6 +8,7 @@ This table depends on [scaleway_lbs](scaleway_lbs.md).
 
 The following tables depend on scaleway_lb_frontends:
   - [scaleway_lb_frontend_acls](scaleway_lb_frontend_acls.md)
+  - [scaleway_lb_frontend_routes](scaleway_lb_frontend_routes.md)
 
 ## Columns
 

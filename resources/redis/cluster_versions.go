@@ -15,6 +15,7 @@ func Versions() *schema.Table {
 		Name:      "scaleway_redis_versions",
 		Resolver:  fetchVersions,
 		Transform: transformers.TransformWithStruct(&redis.ClusterVersion{}, transformers.WithPrimaryKeys("Version", "Zone")),
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchVersions(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListClusterVersions(&redis.ListClusterVersionsRequest{
+			Zone:     cl.Zone,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

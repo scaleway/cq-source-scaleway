@@ -15,6 +15,7 @@ func Clusters() *schema.Table {
 		Name:      "scaleway_k8s_clusters",
 		Resolver:  fetchClusters,
 		Transform: transformers.TransformWithStruct(&k8s.Cluster{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 		Relations: []*schema.Table{
 			clusterAvailableVersions(),
 			clusterNodes(),
@@ -32,8 +33,10 @@ func fetchClusters(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListClusters(&k8s.ListClustersRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

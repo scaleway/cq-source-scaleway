@@ -15,6 +15,7 @@ func Clusters() *schema.Table {
 		Name:      "scaleway_redis_clusters",
 		Resolver:  fetchClusters,
 		Transform: transformers.TransformWithStruct(&redis.Cluster{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchClusters(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListClusters(&redis.ListClustersRequest{
+			Zone:           cl.Zone,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

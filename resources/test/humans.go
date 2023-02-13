@@ -15,6 +15,7 @@ func Humans() *schema.Table {
 		Name:      "scaleway_test_humans",
 		Resolver:  fetchHumans,
 		Transform: transformers.TransformWithStruct(&test.Human{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgMultiplex,
 	}
 }
 

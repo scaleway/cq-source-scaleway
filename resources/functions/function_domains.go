@@ -28,6 +28,7 @@ func fetchFunctionDomains(ctx context.Context, meta schema.ClientMeta, parent *s
 
 	for {
 		response, err := api.ListDomains(&function.ListDomainsRequest{
+			Region:     p.Region,
 			FunctionID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

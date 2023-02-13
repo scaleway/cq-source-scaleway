@@ -15,6 +15,7 @@ func SecurityGroups() *schema.Table {
 		Name:      "scaleway_security_groups",
 		Resolver:  fetchSecurityGroups,
 		Transform: transformers.TransformWithStruct(&instance.SecurityGroup{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 		Relations: []*schema.Table{
 			securityGroupRules(),
 		},
@@ -30,8 +31,10 @@ func fetchSecurityGroups(ctx context.Context, meta schema.ClientMeta, parent *sc
 
 	for {
 		response, err := api.ListSecurityGroups(&instance.ListSecurityGroupsRequest{
-			PerPage: &limit,
-			Page:    &page,
+			Zone:         cl.Zone,
+			Organization: &cl.OrgID,
+			PerPage:      &limit,
+			Page:         &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

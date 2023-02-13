@@ -38,6 +38,7 @@ func fetchSecurityGroupRules(ctx context.Context, meta schema.ClientMeta, parent
 
 	for {
 		response, err := api.ListSecurityGroupRules(&instance.ListSecurityGroupRulesRequest{
+			Zone:            p.Zone,
 			SecurityGroupID: p.ID,
 			PerPage:         &limit,
 			Page:            &page,

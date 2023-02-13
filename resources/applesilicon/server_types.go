@@ -18,6 +18,7 @@ func ServerTypes() *schema.Table {
 		Columns: schema.ColumnList{
 			client.ZonePK,
 		},
+		Multiplex: client.ZoneMultiplex,
 	}
 }
 
@@ -25,7 +26,9 @@ func fetchServerTypes(ctx context.Context, meta schema.ClientMeta, parent *schem
 	cl := meta.(*client.Client)
 	api := applesilicon.NewAPI(cl.SCWClient)
 
-	response, err := api.ListServerTypes(&applesilicon.ListServerTypesRequest{}, scw.WithContext(ctx))
+	response, err := api.ListServerTypes(&applesilicon.ListServerTypesRequest{
+		Zone: cl.Zone,
+	}, scw.WithContext(ctx))
 	if err != nil {
 		return err
 	}

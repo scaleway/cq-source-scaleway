@@ -15,6 +15,7 @@ func PermissionSets() *schema.Table {
 		Name:      "scaleway_iam_permission_sets",
 		Resolver:  fetchPermissionSets,
 		Transform: transformers.TransformWithStruct(&iam.PermissionSet{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgMultiplex,
 	}
 }
 
@@ -27,8 +28,9 @@ func fetchPermissionSets(ctx context.Context, meta schema.ClientMeta, parent *sc
 
 	for {
 		response, err := api.ListPermissionSets(&iam.ListPermissionSetsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

@@ -15,6 +15,7 @@ func Servers() *schema.Table {
 		Name:      "scaleway_applesilicon_servers",
 		Resolver:  fetchServers,
 		Transform: transformers.TransformWithStruct(&applesilicon.Server{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,8 +28,10 @@ func fetchServers(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListServers(&applesilicon.ListServersRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Zone:           cl.Zone,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

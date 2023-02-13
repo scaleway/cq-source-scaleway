@@ -15,6 +15,7 @@ func Instances() *schema.Table {
 		Name:      "scaleway_instances",
 		Resolver:  fetchInstances,
 		Transform: transformers.TransformWithStruct(&instance.Server{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,8 +28,10 @@ func fetchInstances(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListServers(&instance.ListServersRequest{
-			PerPage: &limit,
-			Page:    &page,
+			Zone:         cl.Zone,
+			Organization: &cl.OrgID,
+			PerPage:      &limit,
+			Page:         &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

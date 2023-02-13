@@ -15,6 +15,7 @@ func Secrets() *schema.Table {
 		Name:      "scaleway_secrets",
 		Resolver:  fetchSecrets,
 		Transform: transformers.TransformWithStruct(&secret.Secret{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.RegionMultiplex,
 		Relations: []*schema.Table{
 			secretVersions(),
 		},
@@ -30,6 +31,7 @@ func fetchSecrets(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListSecrets(&secret.ListSecretsRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

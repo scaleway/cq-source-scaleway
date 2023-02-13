@@ -50,6 +50,7 @@ func fetchEmails(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListEmails(&tem.ListEmailsRequest{
+			Region:   p.Region,
 			DomainID: &p.ID,
 			Since:    startFrom,
 			PageSize: &limit,

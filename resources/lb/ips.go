@@ -15,6 +15,7 @@ func IPs() *schema.Table {
 		Name:      "scaleway_lb_ips",
 		Resolver:  fetchLBIPs,
 		Transform: transformers.TransformWithStruct(&lb.IP{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchLBIPs(ctx context.Context, meta schema.ClientMeta, parent *schema.Reso
 
 	for {
 		response, err := api.ListIPs(&lb.ListIPsRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

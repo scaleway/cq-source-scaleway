@@ -15,6 +15,7 @@ func Devices() *schema.Table {
 		Name:      "scaleway_iot_devices",
 		Resolver:  fetchDevices,
 		Transform: transformers.TransformWithStruct(&iot.Device{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.RegionMultiplex,
 		Columns: schema.ColumnList{
 			client.RegionPK,
 		},
@@ -30,6 +31,7 @@ func fetchDevices(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListDevices(&iot.ListDevicesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

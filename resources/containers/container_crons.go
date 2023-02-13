@@ -28,6 +28,7 @@ func fetchContainerCrons(ctx context.Context, meta schema.ClientMeta, parent *sc
 
 	for {
 		response, err := api.ListCrons(&container.ListCronsRequest{
+			Region:      p.Region,
 			ContainerID: p.ID,
 			PageSize:    &limit,
 			Page:        &page,

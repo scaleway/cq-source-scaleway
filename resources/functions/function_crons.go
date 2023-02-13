@@ -28,6 +28,7 @@ func fetchFunctionCrons(ctx context.Context, meta schema.ClientMeta, parent *sch
 
 	for {
 		response, err := api.ListCrons(&function.ListCronsRequest{
+			Region:     p.Region,
 			FunctionID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

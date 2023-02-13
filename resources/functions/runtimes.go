@@ -16,8 +16,10 @@ func Runtimes() *schema.Table {
 		Resolver:  fetchRuntimes,
 		Transform: transformers.TransformWithStruct(&function.Runtime{}, transformers.WithPrimaryKeys("Name")),
 		Columns: schema.ColumnList{
+			client.OrgPK,
 			client.RegionPK,
 		},
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -25,7 +27,9 @@ func fetchRuntimes(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 	cl := meta.(*client.Client)
 	api := function.NewAPI(cl.SCWClient)
 
-	response, err := api.ListFunctionRuntimes(&function.ListFunctionRuntimesRequest{}, scw.WithContext(ctx))
+	response, err := api.ListFunctionRuntimes(&function.ListFunctionRuntimesRequest{
+		Region: cl.Region,
+	}, scw.WithContext(ctx))
 	if err != nil {
 		return err
 	}

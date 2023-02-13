@@ -31,6 +31,7 @@ func fetchFunctionTriggers(ctx context.Context, meta schema.ClientMeta, parent *
 
 	for {
 		response, err := api.ListTriggers(&function.ListTriggersRequest{
+			Region:     p.Region,
 			FunctionID: p.ID,
 			PageSize:   &limit,
 			Page:       &page,

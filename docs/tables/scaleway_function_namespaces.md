@@ -2,6 +2,11 @@
 
 The primary key for this table is **id**.
 
+## Relations
+
+The following tables depend on scaleway_function_namespaces:
+  - [scaleway_function_tokens](scaleway_function_tokens.md)
+
 ## Columns
 
 | Name          | Type          |

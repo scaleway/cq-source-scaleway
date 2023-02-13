@@ -28,6 +28,7 @@ func fetchGatewayNetworks(ctx context.Context, meta schema.ClientMeta, parent *s
 
 	for {
 		response, err := api.ListGatewayNetworks(&vpcgw.ListGatewayNetworksRequest{
+			Zone:      p.Zone,
 			GatewayID: &p.ID,
 			PageSize:  &limit,
 			Page:      &page,

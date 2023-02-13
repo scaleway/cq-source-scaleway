@@ -28,6 +28,7 @@ func fetchSecretVersions(ctx context.Context, meta schema.ClientMeta, parent *sc
 
 	for {
 		response, err := api.ListSecretVersions(&secret.ListSecretVersionsRequest{
+			Region:   p.Region,
 			SecretID: p.ID,
 			PageSize: &limit,
 			Page:     &page,

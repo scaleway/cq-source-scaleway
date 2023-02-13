@@ -15,6 +15,7 @@ func Gateways() *schema.Table {
 		Name:      "scaleway_vpcgw_gateways",
 		Resolver:  fetchGateways,
 		Transform: transformers.TransformWithStruct(&vpcgw.Gateway{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 		Relations: []*schema.Table{
 			gatewayNetworks(),
 		},
@@ -30,6 +31,7 @@ func fetchGateways(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListGateways(&vpcgw.ListGatewaysRequest{
+			Zone:           cl.Zone,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

@@ -18,6 +18,7 @@ func Networks() *schema.Table {
 		Columns: schema.ColumnList{
 			client.RegionPK,
 		},
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -30,6 +31,7 @@ func fetchNetworks(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListNetworks(&iot.ListNetworksRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

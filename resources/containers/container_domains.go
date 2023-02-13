@@ -28,6 +28,7 @@ func fetchContainerDomains(ctx context.Context, meta schema.ClientMeta, parent *
 
 	for {
 		response, err := api.ListDomains(&container.ListDomainsRequest{
+			Region:      p.Region,
 			ContainerID: p.ID,
 			PageSize:    &limit,
 			Page:        &page,

@@ -15,6 +15,7 @@ func Users() *schema.Table {
 		Name:      "scaleway_iam_users",
 		Resolver:  fetchUsers,
 		Transform: transformers.TransformWithStruct(&iam.User{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgMultiplex,
 	}
 }
 

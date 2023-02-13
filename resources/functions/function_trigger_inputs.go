@@ -31,6 +31,7 @@ func functionTriggerInputs() *schema.Table {
 func fetchFunctionTriggerInputs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
 	p := parent.Item.(*function.Trigger)
+	pp := parent.Parent.Item.(*function.Function)
 	api := function.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
@@ -38,6 +39,7 @@ func fetchFunctionTriggerInputs(ctx context.Context, meta schema.ClientMeta, par
 
 	for {
 		response, err := api.ListTriggerInputs(&function.ListTriggerInputsRequest{
+			Region:    pp.Region,
 			TriggerID: p.ID,
 			PageSize:  &limit,
 			Page:      &page,

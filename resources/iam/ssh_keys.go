@@ -15,6 +15,7 @@ func SSHKeys() *schema.Table {
 		Name:      "scaleway_iam_ssh_keys",
 		Resolver:  fetchSSHKeys,
 		Transform: transformers.TransformWithStruct(&iam.SSHKey{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgMultiplex,
 	}
 }
 
@@ -27,8 +28,9 @@ func fetchSSHKeys(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListSSHKeys(&iam.ListSSHKeysRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

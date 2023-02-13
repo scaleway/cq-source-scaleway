@@ -15,6 +15,7 @@ func Functions() *schema.Table {
 		Name:      "scaleway_functions",
 		Resolver:  fetchFunctions,
 		Transform: transformers.TransformWithStruct(&function.Function{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 		Relations: []*schema.Table{
 			functionCrons(),
 			functionDomains(),
@@ -32,8 +33,10 @@ func fetchFunctions(ctx context.Context, meta schema.ClientMeta, parent *schema.
 
 	for {
 		response, err := api.ListFunctions(&function.ListFunctionsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

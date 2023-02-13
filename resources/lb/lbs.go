@@ -15,6 +15,7 @@ func LBs() *schema.Table {
 		Name:      "scaleway_lbs",
 		Resolver:  fetchLBs,
 		Transform: transformers.TransformWithStruct(&lb.LB{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 		Relations: []*schema.Table{
 			lbBackends(),
 			lbBackendStats(),
@@ -34,8 +35,10 @@ func fetchLBs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resour
 
 	for {
 		response, err := api.ListLBs(&lb.ListLBsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

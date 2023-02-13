@@ -42,14 +42,14 @@ func TestHelper(t *testing.T, table *schema.Table, createServices func(*mux.Rout
 			scw.WithoutAuth(),
 			scw.WithInsecure(),
 			scw.WithAPIURL(h.URL),
-			scw.WithDefaultRegion(defaultRegion),
-			scw.WithDefaultZone(defaultZone),
 			scw.WithDefaultOrganizationID(TestOrgID),
 		)
 		if err != nil {
 			return nil, err
 		}
-		s := Spec{}
+		s := Spec{
+			OrgIDs: []string{TestOrgID},
+		}
 		s.SetDefaults()
 		if err := s.Validate(); err != nil {
 			return nil, err

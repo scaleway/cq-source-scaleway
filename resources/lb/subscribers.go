@@ -15,6 +15,7 @@ func Subscribers() *schema.Table {
 		Name:      "scaleway_lb_subscribers",
 		Resolver:  fetchSubscribers,
 		Transform: transformers.TransformWithStruct(&lb.Subscriber{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchSubscribers(ctx context.Context, meta schema.ClientMeta, parent *schem
 
 	for {
 		response, err := api.ListSubscriber(&lb.ListSubscriberRequest{
+			Region:         cl.Region,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

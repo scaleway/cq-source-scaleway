@@ -15,6 +15,7 @@ func IPs() *schema.Table {
 		Name:      "scaleway_vpcgw_ips",
 		Resolver:  fetchIPs,
 		Transform: transformers.TransformWithStruct(&vpcgw.IP{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgZoneMultiplex,
 	}
 }
 
@@ -27,6 +28,7 @@ func fetchIPs(ctx context.Context, meta schema.ClientMeta, parent *schema.Resour
 
 	for {
 		response, err := api.ListIPs(&vpcgw.ListIPsRequest{
+			Zone:           cl.Zone,
 			OrganizationID: &cl.OrgID,
 			PageSize:       &limit,
 			Page:           &page,

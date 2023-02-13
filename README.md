@@ -52,5 +52,14 @@ spec:
 
 ### Plugin Spec
 
+- `org_ids` (list of string, required. Default is set to the value of `SCW_DEFAULT_ORGANIZATION_ID` env variable):
+  List of organizations to query.
+
+- `regions` (list of string, optional. Default: `fr-par`):
+  List of regions to query.
+
+- `zones` (list of string, optional. Default: `fr-par-1`):
+  List of zones to query.
+
 - `timeout_secs` (integer in seconds, optional. Default: 10):
   Timeout for requests against the Scaleway API endpoint.

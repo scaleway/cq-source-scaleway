@@ -15,6 +15,7 @@ func Containers() *schema.Table {
 		Name:      "scaleway_containers",
 		Resolver:  fetchContainers,
 		Transform: transformers.TransformWithStruct(&container.Container{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
 		Relations: []*schema.Table{
 			containerCrons(),
 			containerDomains(),
@@ -31,8 +32,10 @@ func fetchContainers(ctx context.Context, meta schema.ClientMeta, parent *schema
 
 	for {
 		response, err := api.ListContainers(&container.ListContainersRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

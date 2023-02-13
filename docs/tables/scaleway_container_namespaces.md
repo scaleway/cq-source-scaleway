@@ -2,6 +2,11 @@
 
 The primary key for this table is **id**.
 
+## Relations
+
+The following tables depend on scaleway_container_namespaces:
+  - [scaleway_container_tokens](scaleway_container_tokens.md)
+
 ## Columns
 
 | Name          | Type          |

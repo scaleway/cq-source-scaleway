@@ -28,6 +28,7 @@ func fetchClusterPools(ctx context.Context, meta schema.ClientMeta, parent *sche
 
 	for {
 		response, err := api.ListPools(&k8s.ListPoolsRequest{
+			Region:    p.Region,
 			ClusterID: p.ID,
 			PageSize:  &limit,
 			Page:      &page,

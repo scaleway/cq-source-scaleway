@@ -18,6 +18,7 @@ func Routes() *schema.Table {
 		Columns: schema.ColumnList{
 			client.RegionPK,
 		},
+		Multiplex: client.RegionMultiplex,
 	}
 }
 
@@ -30,6 +31,7 @@ func fetchRoutes(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListRoutes(&iot.ListRoutesRequest{
+			Region:   cl.Region,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

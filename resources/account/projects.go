@@ -15,6 +15,7 @@ func Projects() *schema.Table {
 		Name:      "scaleway_projects",
 		Resolver:  fetchProjects,
 		Transform: transformers.TransformWithStruct(&account.Project{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgMultiplex,
 	}
 }
 
@@ -27,8 +28,9 @@ func fetchProjects(ctx context.Context, meta schema.ClientMeta, parent *schema.R
 
 	for {
 		response, err := api.ListProjects(&account.ListProjectsRequest{
-			PageSize: &limit,
-			Page:     &page,
+			OrganizationID: cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err

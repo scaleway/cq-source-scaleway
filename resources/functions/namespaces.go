@@ -15,6 +15,10 @@ func Namespaces() *schema.Table {
 		Name:      "scaleway_function_namespaces",
 		Resolver:  fetchNamespaces,
 		Transform: transformers.TransformWithStruct(&function.Namespace{}, transformers.WithPrimaryKeys("ID")),
+		Multiplex: client.OrgRegionMultiplex,
+		Relations: []*schema.Table{
+			namespaceTokens(),
+		},
 	}
 }
 
@@ -27,8 +31,10 @@ func fetchNamespaces(ctx context.Context, meta schema.ClientMeta, parent *schema
 
 	for {
 		response, err := api.ListNamespaces(&function.ListNamespacesRequest{
-			PageSize: &limit,
-			Page:     &page,
+			Region:         cl.Region,
+			OrganizationID: &cl.OrgID,
+			PageSize:       &limit,
+			Page:           &page,
 		}, scw.WithContext(ctx))
 		if err != nil {
 			return err
