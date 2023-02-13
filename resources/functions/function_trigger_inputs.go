@@ -19,7 +19,7 @@ func functionTriggerInputs() *schema.Table {
 			{
 				Name:     "trigger_id",
 				Type:     schema.TypeString,
-				Resolver: schema.ParentColumnResolver("ID"),
+				Resolver: schema.ParentColumnResolver("id"),
 				CreationOptions: schema.ColumnCreationOptions{
 					PrimaryKey: true,
 				},

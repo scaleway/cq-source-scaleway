@@ -19,7 +19,7 @@ func securityGroupRules() *schema.Table {
 			{
 				Name:     "security_group_id",
 				Type:     schema.TypeString,
-				Resolver: schema.ParentColumnResolver("ID"),
+				Resolver: schema.ParentColumnResolver("id"),
 				CreationOptions: schema.ColumnCreationOptions{
 					PrimaryKey: true,
 				},
