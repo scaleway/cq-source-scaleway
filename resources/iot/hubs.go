@@ -16,6 +16,11 @@ func Hubs() *schema.Table {
 		Resolver:  fetchHubs,
 		Transform: transformers.TransformWithStruct(&iot.Hub{}, transformers.WithPrimaryKeys("ID")),
 		Multiplex: client.OrgRegionMultiplex,
+		Relations: []*schema.Table{
+			devices(),
+			networks(),
+			routes(),
+		},
 	}
 }
 

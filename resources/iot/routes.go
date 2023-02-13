@@ -10,20 +10,17 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-func Routes() *schema.Table {
+func routes() *schema.Table {
 	return &schema.Table{
 		Name:      "scaleway_iot_routes",
 		Resolver:  fetchRoutes,
 		Transform: transformers.TransformWithStruct(&iot.RouteSummary{}, transformers.WithPrimaryKeys("ID")),
-		Columns: schema.ColumnList{
-			client.RegionPK,
-		},
-		Multiplex: client.RegionMultiplex,
 	}
 }
 
 func fetchRoutes(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
+	p := parent.Item.(*iot.Hub)
 	api := iot.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
@@ -31,7 +28,8 @@ func fetchRoutes(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 
 	for {
 		response, err := api.ListRoutes(&iot.ListRoutesRequest{
-			Region:   cl.Region,
+			Region:   p.Region,
+			HubID:    &p.ID,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))

@@ -1,6 +1,10 @@
 # Table: scaleway_iot_routes
 
-The composite primary key for this table is (**region**, **id**).
+The primary key for this table is **id**.
+
+## Relations
+
+This table depends on [scaleway_iot_hubs](scaleway_iot_hubs.md).
 
 ## Columns
 
@@ -10,7 +14,6 @@ The composite primary key for this table is (**region**, **id**).
 |_cq_sync_time|Timestamp|
 |_cq_id|UUID|
 |_cq_parent_id|UUID|
-|region (PK)|String|
 |id (PK)|String|
 |name|String|
 |hub_id|String|

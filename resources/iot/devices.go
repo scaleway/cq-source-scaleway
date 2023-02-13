@@ -10,20 +10,17 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-func Devices() *schema.Table {
+func devices() *schema.Table {
 	return &schema.Table{
 		Name:      "scaleway_iot_devices",
 		Resolver:  fetchDevices,
 		Transform: transformers.TransformWithStruct(&iot.Device{}, transformers.WithPrimaryKeys("ID")),
-		Multiplex: client.RegionMultiplex,
-		Columns: schema.ColumnList{
-			client.RegionPK,
-		},
 	}
 }
 
 func fetchDevices(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan<- any) error {
 	cl := meta.(*client.Client)
+	p := parent.Item.(*iot.Hub)
 	api := iot.NewAPI(cl.SCWClient)
 
 	limit := uint32(100)
@@ -31,7 +28,8 @@ func fetchDevices(ctx context.Context, meta schema.ClientMeta, parent *schema.Re
 
 	for {
 		response, err := api.ListDevices(&iot.ListDevicesRequest{
-			Region:   cl.Region,
+			Region:   p.Region,
+			HubID:    &p.ID,
 			PageSize: &limit,
 			Page:     &page,
 		}, scw.WithContext(ctx))
