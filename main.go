@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/scaleway/cq-source-scaleway/plugin"
 	"github.com/cloudquery/plugin-sdk/serve"
+	"github.com/scaleway/cq-source-scaleway/plugin"
 )
 
 func main() {

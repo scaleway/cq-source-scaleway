@@ -10,7 +10,7 @@ type Spec struct {
 	Timeout int64 `json:"timeout_secs,omitempty"`
 }
 
-func (s Spec) Validate() error {
+func (Spec) Validate() error {
 	return nil
 }
 
