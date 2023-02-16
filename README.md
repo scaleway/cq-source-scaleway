@@ -61,3 +61,31 @@ spec:
 
 - `timeout_secs` (integer in seconds, optional. Default: 10):
   Timeout for requests against the Scaleway API endpoint.
+
+## Development
+
+### Run tests
+
+```bash
+make test
+```
+
+### Run linter
+
+```bash
+make lint
+```
+
+### Generate docs
+
+```bash
+make gen-docs
+```
+
+### Release a new version
+
+1. Run `git tag v1.0.0` to create a new tag for the release (replace `v1.0.0` with the new version number)
+2. Run `git push origin v1.0.0` to push the tag to GitHub  
+
+Once the tag is pushed, a new GitHub Actions workflow will be triggered to build the release binaries and create the new release on GitHub.
+To customize the release notes, see the Go releaser [changelog configuration docs](https://goreleaser.com/customization/changelog/#changelog).
