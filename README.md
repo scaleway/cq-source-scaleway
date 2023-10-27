@@ -38,7 +38,10 @@ spec:
   name: "scaleway"
   path: "scaleway/scaleway"
   version: "${VERSION}"
-  # backend: "local" # use this to enable incremental syncing
+  # use this to enable incremental syncing
+  # backend_options:
+  #   table_name: "cq_state_scaleway"
+  #   connection: "@@plugins.DESTINATION_NAME.connection"
   tables: 
     - "*"
   skip_tables:
@@ -59,8 +62,11 @@ spec:
 - `zones` (list of string, optional. Defaults to all zones):
   List of zones to query.
 
-- `timeout_secs` (integer in seconds, optional. Default: 10):
+- `timeout_secs` (integer in seconds, optional. Default: `10`):
   Timeout for requests against the Scaleway API endpoint.
+
+- `concurrency` (int, optional, default: `1000`):
+  A best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
 
 ## Development
 
