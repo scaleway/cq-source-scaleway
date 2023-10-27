@@ -15,6 +15,7 @@ import (
 	"github.com/cloudquery/plugin-sdk/v4/schema"
 	"github.com/cloudquery/plugin-sdk/v4/state"
 	"github.com/cloudquery/plugin-sdk/v4/transformers"
+	internalPlugin "github.com/scaleway/cq-source-scaleway/plugin"
 	"github.com/scaleway/scaleway-sdk-go/scw"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -142,7 +143,7 @@ func Configure(_ context.Context, logger zerolog.Logger, specBytes []byte, opts 
 		scw.WithHTTPClient(&http.Client{
 			Timeout: time.Duration(config.Timeout) * time.Second,
 		}),
-		scw.WithUserAgent("cq-plugin-scaleway/" + Version),
+		scw.WithUserAgent("cq-plugin-scaleway/" + internalPlugin.Version),
 	}
 
 	cf, err := scw.LoadConfig()

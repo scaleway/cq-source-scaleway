@@ -2,21 +2,15 @@ package plugin
 
 import (
 	"github.com/cloudquery/plugin-sdk/v4/plugin"
-)
-
-var (
-	Name    = "scaleway"
-	Kind    = "source"
-	Team    = "scaleway"
-	Version = "development"
+	internalPlugin "github.com/scaleway/cq-source-scaleway/plugin"
 )
 
 func Plugin() *plugin.Plugin {
 	return plugin.NewPlugin(
-		Name,
-		Version,
+		internalPlugin.Name,
+		internalPlugin.Version,
 		Configure,
-		plugin.WithKind(Kind),
-		plugin.WithTeam(Team),
+		plugin.WithKind(internalPlugin.Kind),
+		plugin.WithTeam(internalPlugin.Team),
 	)
 }
