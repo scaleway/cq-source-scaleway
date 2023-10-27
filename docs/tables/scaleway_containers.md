@@ -1,5 +1,7 @@
 # Table: scaleway_containers
 
+This table shows data for Scaleway Containers.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -12,28 +14,26 @@ The following tables depend on scaleway_containers:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|namespace_id|String|
-|status|String|
-|environment_variables|JSON|
-|min_scale|Int|
-|max_scale|Int|
-|memory_limit|Int|
-|cpu_limit|Int|
-|timeout|JSON|
-|error_message|String|
-|privacy|String|
-|description|String|
-|registry_image|String|
-|max_concurrency|Int|
-|domain_name|String|
-|protocol|String|
-|port|Int|
-|secret_environment_variables|JSON|
-|http_option|String|
-|region|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|namespace_id|`utf8`|
+|status|`utf8`|
+|environment_variables|`json`|
+|min_scale|`int64`|
+|max_scale|`int64`|
+|memory_limit|`int64`|
+|cpu_limit|`int64`|
+|timeout|`json`|
+|error_message|`utf8`|
+|privacy|`utf8`|
+|description|`utf8`|
+|registry_image|`utf8`|
+|max_concurrency|`int64`|
+|domain_name|`utf8`|
+|protocol|`utf8`|
+|port|`int64`|
+|secret_environment_variables|`json`|
+|http_option|`utf8`|
+|region|`utf8`|

@@ -1,5 +1,7 @@
 # Table: scaleway_rdb_instance_privileges
 
+This table shows data for Scaleway Rdb Instance Privileges.
+
 The composite primary key for this table is (**permission**, **database_name**, **user_name**).
 
 ## Relations
@@ -10,11 +12,9 @@ This table depends on [scaleway_rdb_instances](scaleway_rdb_instances.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|instance_id|String|
-|permission (PK)|String|
-|database_name (PK)|String|
-|user_name (PK)|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|instance_id|`utf8`|
+|permission (PK)|`utf8`|
+|database_name (PK)|`utf8`|
+|user_name (PK)|`utf8`|

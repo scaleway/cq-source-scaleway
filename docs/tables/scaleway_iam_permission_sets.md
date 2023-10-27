@@ -1,17 +1,17 @@
 # Table: scaleway_iam_permission_sets
 
+This table shows data for Scaleway IAM Permission Sets.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|scope_type|String|
-|description|String|
-|categories|StringArray|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|scope_type|`utf8`|
+|description|`utf8`|
+|categories|`list<item: utf8, nullable>`|

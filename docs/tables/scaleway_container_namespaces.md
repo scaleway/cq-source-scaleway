@@ -1,5 +1,7 @@
 # Table: scaleway_container_namespaces
 
+This table shows data for Scaleway Container Namespaces.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,19 +13,17 @@ The following tables depend on scaleway_container_namespaces:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|environment_variables|JSON|
-|organization_id|String|
-|project_id|String|
-|status|String|
-|registry_namespace_id|String|
-|error_message|String|
-|registry_endpoint|String|
-|description|String|
-|secret_environment_variables|JSON|
-|region|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|environment_variables|`json`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|status|`utf8`|
+|registry_namespace_id|`utf8`|
+|error_message|`utf8`|
+|registry_endpoint|`utf8`|
+|description|`utf8`|
+|secret_environment_variables|`json`|
+|region|`utf8`|

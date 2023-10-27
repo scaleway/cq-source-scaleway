@@ -8,9 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cloudquery/plugin-sdk/plugins/source"
-	"github.com/cloudquery/plugin-sdk/schema"
-	"github.com/cloudquery/plugin-sdk/specs"
+	"github.com/cloudquery/plugin-sdk/v4/plugin"
+	"github.com/cloudquery/plugin-sdk/v4/scheduler"
+	"github.com/cloudquery/plugin-sdk/v4/schema"
+	"github.com/cloudquery/plugin-sdk/v4/transformers"
 	"github.com/gorilla/mux"
 	"github.com/rs/zerolog"
 	"github.com/scaleway/scaleway-sdk-go/scw"
@@ -19,8 +20,6 @@ import (
 var TestOrgID = "DECAF000-CAFE-0000-0000-000000000000"
 
 func TestHelper(t *testing.T, table *schema.Table, createServices func(*mux.Router) error) {
-	version := "vDev"
-
 	t.Helper()
 	table.IgnoreInTests = false
 
@@ -33,51 +32,39 @@ func TestHelper(t *testing.T, table *schema.Table, createServices func(*mux.Rout
 	h := httptest.NewServer(router)
 	defer h.Close()
 
-	logger := zerolog.New(zerolog.NewTestWriter(t)).Output(
+	l := zerolog.New(zerolog.NewTestWriter(t)).Output(
 		zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.StampMicro},
 	).Level(zerolog.DebugLevel).With().Timestamp().Logger()
-
-	newTestExecutionClient := func(ctx context.Context, logger zerolog.Logger, spec specs.Source, opts source.Options) (schema.ClientMeta, error) {
-		scwClient, err := scw.NewClient(
-			scw.WithoutAuth(),
-			scw.WithInsecure(),
-			scw.WithAPIURL(h.URL),
-			scw.WithDefaultOrganizationID(TestOrgID),
-		)
-		if err != nil {
-			return nil, err
-		}
-		s := Spec{}
-		s.SetDefaults()
-		if err := s.Validate(); err != nil {
-			return nil, err
-		}
-
-		if err := createServices(router); err != nil {
-			return nil, err
-		}
-
-		return &Client{
-			Logger:     logger,
-			SCWClient:  scwClient,
-			Backend:    opts.Backend,
-			Spec:       s,
-			sourceSpec: spec,
-		}, nil
+	sched := scheduler.NewScheduler(scheduler.WithLogger(l))
+	spec := &Spec{}
+	spec.SetDefaults()
+	if err := spec.Validate(); err != nil {
+		t.Fatalf("failed to validate spec: %v", err)
 	}
-	p := source.NewPlugin(
-		table.Name,
-		version,
-		[]*schema.Table{
-			table,
-		},
-		newTestExecutionClient)
-	p.SetLogger(logger)
-	source.TestPluginSync(t, p, specs.Source{
-		Name:         "dev",
-		Path:         "cloudquery/dev",
-		Version:      version,
-		Tables:       []string{table.Name},
-		Destinations: []string{"mock-destination"},
-	})
+
+	if err := createServices(router); err != nil {
+		t.Fatal(err)
+	}
+
+	services, err := scw.NewClient(
+		scw.WithoutAuth(),
+		scw.WithInsecure(),
+		scw.WithAPIURL(h.URL),
+		scw.WithDefaultOrganizationID(TestOrgID),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	c := New(l, *spec, TestOrgID, services, nil)
+
+	tables := schema.Tables{table}
+	if err := transformers.TransformTables(tables); err != nil {
+		t.Fatal(err)
+	}
+	messages, err := sched.SyncAll(context.Background(), c, tables)
+	if err != nil {
+		t.Fatalf("failed to sync: %v", err)
+	}
+	plugin.ValidateNoEmptyColumns(t, tables, messages)
 }

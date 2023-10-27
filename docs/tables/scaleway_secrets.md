@@ -1,5 +1,7 @@
 # Table: scaleway_secrets
 
+This table shows data for Scaleway Secrets.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,17 +13,15 @@ The following tables depend on scaleway_secrets:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|project_id|String|
-|name|String|
-|status|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|tags|StringArray|
-|region|String|
-|version_count|Int|
-|description|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|project_id|`utf8`|
+|name|`utf8`|
+|status|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|tags|`list<item: utf8, nullable>`|
+|region|`utf8`|
+|version_count|`int64`|
+|description|`utf8`|

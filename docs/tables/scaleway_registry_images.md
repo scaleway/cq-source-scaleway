@@ -1,5 +1,7 @@
 # Table: scaleway_registry_images
 
+This table shows data for Scaleway Registry Images.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,17 +13,15 @@ The following tables depend on scaleway_registry_images:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|namespace_id|String|
-|status|String|
-|status_message|String|
-|visibility|String|
-|size|Int|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|tags|StringArray|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|namespace_id|`utf8`|
+|status|`utf8`|
+|status_message|`utf8`|
+|visibility|`utf8`|
+|size|`int64`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|tags|`list<item: utf8, nullable>`|

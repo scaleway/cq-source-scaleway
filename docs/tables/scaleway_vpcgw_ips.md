@@ -1,22 +1,22 @@
 # Table: scaleway_vpcgw_ips
 
+This table shows data for Scaleway Vpcgw IPs.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|organization_id|String|
-|project_id|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|tags|StringArray|
-|address|Inet|
-|reverse|String|
-|gateway_id|String|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|tags|`list<item: utf8, nullable>`|
+|address|`inet`|
+|reverse|`utf8`|
+|gateway_id|`utf8`|
+|zone|`utf8`|

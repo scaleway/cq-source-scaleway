@@ -1,27 +1,27 @@
 # Table: scaleway_images
 
+This table shows data for Scaleway Images.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|arch|String|
-|creation_date|Timestamp|
-|modification_date|Timestamp|
-|default_bootscript|JSON|
-|extra_volumes|JSON|
-|from_server|String|
-|organization|String|
-|public|Bool|
-|root_volume|JSON|
-|state|String|
-|project|String|
-|tags|StringArray|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|arch|`utf8`|
+|creation_date|`timestamp[us, tz=UTC]`|
+|modification_date|`timestamp[us, tz=UTC]`|
+|default_bootscript|`json`|
+|extra_volumes|`json`|
+|from_server|`utf8`|
+|organization|`utf8`|
+|public|`bool`|
+|root_volume|`json`|
+|state|`utf8`|
+|project|`utf8`|
+|tags|`list<item: utf8, nullable>`|
+|zone|`utf8`|

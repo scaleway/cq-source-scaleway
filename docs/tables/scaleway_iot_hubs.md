@@ -1,5 +1,7 @@
 # Table: scaleway_iot_hubs
 
+This table shows data for Scaleway IOT Hubs.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -13,25 +15,23 @@ The following tables depend on scaleway_iot_hubs:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|status|String|
-|product_plan|String|
-|enabled|Bool|
-|device_count|Int|
-|connected_device_count|Int|
-|endpoint|String|
-|disable_events|Bool|
-|events_topic_prefix|String|
-|region|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|project_id|String|
-|organization_id|String|
-|enable_device_auto_provisioning|Bool|
-|has_custom_ca|Bool|
-|twins_graphite_config|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|status|`utf8`|
+|product_plan|`utf8`|
+|enabled|`bool`|
+|device_count|`int64`|
+|connected_device_count|`int64`|
+|endpoint|`utf8`|
+|disable_events|`bool`|
+|events_topic_prefix|`utf8`|
+|region|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|project_id|`utf8`|
+|organization_id|`utf8`|
+|enable_device_auto_provisioning|`bool`|
+|has_custom_ca|`bool`|
+|twins_graphite_config|`json`|

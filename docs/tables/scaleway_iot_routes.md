@@ -1,5 +1,7 @@
 # Table: scaleway_iot_routes
 
+This table shows data for Scaleway IOT Routes.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -10,14 +12,12 @@ This table depends on [scaleway_iot_hubs](scaleway_iot_hubs.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|hub_id|String|
-|topic|String|
-|type|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|hub_id|`utf8`|
+|topic|`utf8`|
+|type|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|

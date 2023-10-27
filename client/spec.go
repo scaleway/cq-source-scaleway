@@ -7,7 +7,8 @@ type Spec struct {
 	Zones   []scw.Zone   `json:"zones,omitempty"`
 
 	// Optional
-	Timeout int64 `json:"timeout_secs,omitempty"`
+	Timeout     int64 `json:"timeout_secs,omitempty"`
+	Concurrency int   `json:"concurrency,omitempty"`
 }
 
 func (Spec) Validate() error {
@@ -24,5 +25,8 @@ func (s *Spec) SetDefaults() {
 
 	if s.Timeout < 1 {
 		s.Timeout = 10
+	}
+	if s.Concurrency < 1 {
+		s.Concurrency = 1000
 	}
 }

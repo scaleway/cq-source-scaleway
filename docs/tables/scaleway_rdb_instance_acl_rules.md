@@ -1,5 +1,7 @@
 # Table: scaleway_rdb_instance_acl_rules
 
+This table shows data for Scaleway Rdb Instance ACL Rules.
+
 The composite primary key for this table is (**ip**, **port**, **protocol**, **direction**, **action**).
 
 ## Relations
@@ -10,14 +12,12 @@ This table depends on [scaleway_rdb_instances](scaleway_rdb_instances.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|instance_id|String|
-|ip (PK)|JSON|
-|port (PK)|Int|
-|protocol (PK)|String|
-|direction (PK)|String|
-|action (PK)|String|
-|description|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|instance_id|`utf8`|
+|ip (PK)|`json`|
+|port (PK)|`int64`|
+|protocol (PK)|`utf8`|
+|direction (PK)|`utf8`|
+|action (PK)|`utf8`|
+|description|`utf8`|

@@ -1,5 +1,7 @@
 # Table: scaleway_ipfs_volumes
 
+This table shows data for Scaleway Ipfs Volumes.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,15 +13,13 @@ The following tables depend on scaleway_ipfs_volumes:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|project_id|String|
-|region|String|
-|count_pin|Int|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|tags|StringArray|
-|name|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|project_id|`utf8`|
+|region|`utf8`|
+|count_pin|`int64`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|tags|`list<item: utf8, nullable>`|
+|name|`utf8`|

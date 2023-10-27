@@ -1,23 +1,23 @@
 # Table: scaleway_iam_api_keys
 
+This table shows data for Scaleway IAM API Keys.
+
 The primary key for this table is **access_key**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|access_key (PK)|String|
-|secret_key|String|
-|application_id|String|
-|user_id|String|
-|description|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|expires_at|Timestamp|
-|default_project_id|String|
-|editable|Bool|
-|creation_ip|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|access_key (PK)|`utf8`|
+|secret_key|`utf8`|
+|application_id|`utf8`|
+|user_id|`utf8`|
+|description|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|expires_at|`timestamp[us, tz=UTC]`|
+|default_project_id|`utf8`|
+|editable|`bool`|
+|creation_ip|`utf8`|

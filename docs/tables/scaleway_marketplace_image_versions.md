@@ -1,5 +1,7 @@
 # Table: scaleway_marketplace_image_versions
 
+This table shows data for Scaleway Marketplace Image Versions.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -10,13 +12,11 @@ This table depends on [scaleway_marketplace_images](scaleway_marketplace_images.
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|image_id|String|
-|id (PK)|String|
-|name|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|published_at|Timestamp|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|image_id|`utf8`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|published_at|`timestamp[us, tz=UTC]`|

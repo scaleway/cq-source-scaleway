@@ -1,5 +1,7 @@
 # Table: scaleway_lb_frontends
 
+This table shows data for Scaleway Lb Frontends.
+
 The composite primary key for this table is (**lb_id**, **id**).
 
 ## Relations
@@ -14,19 +16,17 @@ The following tables depend on scaleway_lb_frontends:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|lb_id (PK)|String|
-|id (PK)|String|
-|name|String|
-|inbound_port|Int|
-|backend|JSON|
-|lb|JSON|
-|timeout_client|Int|
-|certificate|JSON|
-|certificate_ids|StringArray|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|enable_http3|Bool|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|lb_id (PK)|`utf8`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|inbound_port|`int64`|
+|backend|`json`|
+|lb|`json`|
+|timeout_client|`int64`|
+|certificate|`json`|
+|certificate_ids|`list<item: utf8, nullable>`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|enable_http3|`bool`|

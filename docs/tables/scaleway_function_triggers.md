@@ -1,5 +1,7 @@
 # Table: scaleway_function_triggers
 
+This table shows data for Scaleway Function Triggers.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -13,16 +15,14 @@ The following tables depend on scaleway_function_triggers:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|description|String|
-|type|String|
-|status|String|
-|error_message|String|
-|function_id|String|
-|nats_failure_handling_policy|JSON|
-|sqs_failure_handling_policy|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|description|`utf8`|
+|type|`utf8`|
+|status|`utf8`|
+|error_message|`utf8`|
+|function_id|`utf8`|
+|nats_failure_handling_policy|`json`|
+|sqs_failure_handling_policy|`json`|
