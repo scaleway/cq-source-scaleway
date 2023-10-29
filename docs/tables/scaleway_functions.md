@@ -1,5 +1,7 @@
 # Table: scaleway_functions
 
+This table shows data for Scaleway Functions.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -13,27 +15,25 @@ The following tables depend on scaleway_functions:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|namespace_id|String|
-|status|String|
-|environment_variables|JSON|
-|min_scale|Int|
-|max_scale|Int|
-|runtime|String|
-|memory_limit|Int|
-|cpu_limit|Int|
-|timeout|JSON|
-|handler|String|
-|error_message|String|
-|privacy|String|
-|description|String|
-|domain_name|String|
-|secret_environment_variables|JSON|
-|region|String|
-|http_option|String|
-|runtime_message|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|namespace_id|`utf8`|
+|status|`utf8`|
+|environment_variables|`json`|
+|min_scale|`int64`|
+|max_scale|`int64`|
+|runtime|`utf8`|
+|memory_limit|`int64`|
+|cpu_limit|`int64`|
+|timeout|`json`|
+|handler|`utf8`|
+|error_message|`utf8`|
+|privacy|`utf8`|
+|description|`utf8`|
+|domain_name|`utf8`|
+|secret_environment_variables|`json`|
+|region|`utf8`|
+|http_option|`utf8`|
+|runtime_message|`utf8`|

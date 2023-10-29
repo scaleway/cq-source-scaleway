@@ -1,5 +1,7 @@
 # Table: scaleway_rdb_instances
 
+This table shows data for Scaleway Rdb Instances.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -14,29 +16,27 @@ The following tables depend on scaleway_rdb_instances:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|created_at|Timestamp|
-|volume|JSON|
-|region|String|
-|id (PK)|String|
-|name|String|
-|organization_id|String|
-|project_id|String|
-|status|String|
-|engine|String|
-|upgradable_version|JSON|
-|endpoint|JSON|
-|tags|StringArray|
-|settings|JSON|
-|backup_schedule|JSON|
-|is_ha_cluster|Bool|
-|read_replicas|JSON|
-|node_type|String|
-|init_settings|JSON|
-|endpoints|JSON|
-|logs_policy|JSON|
-|backup_same_region|Bool|
-|maintenances|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|created_at|`timestamp[us, tz=UTC]`|
+|volume|`json`|
+|region|`utf8`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|status|`utf8`|
+|engine|`utf8`|
+|upgradable_version|`json`|
+|endpoint|`json`|
+|tags|`list<item: utf8, nullable>`|
+|settings|`json`|
+|backup_schedule|`json`|
+|is_ha_cluster|`bool`|
+|read_replicas|`json`|
+|node_type|`utf8`|
+|init_settings|`json`|
+|endpoints|`json`|
+|logs_policy|`json`|
+|backup_same_region|`bool`|
+|maintenances|`json`|

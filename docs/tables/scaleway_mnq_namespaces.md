@@ -1,5 +1,7 @@
 # Table: scaleway_mnq_namespaces
 
+This table shows data for Scaleway Mnq Namespaces.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,15 +13,13 @@ The following tables depend on scaleway_mnq_namespaces:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|endpoint|String|
-|protocol|String|
-|project_id|String|
-|region|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|endpoint|`utf8`|
+|protocol|`utf8`|
+|project_id|`utf8`|
+|region|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|

@@ -1,20 +1,20 @@
 # Table: scaleway_lb_ips
 
+This table shows data for Scaleway Lb IPs.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|ip_address|String|
-|organization_id|String|
-|project_id|String|
-|lb_id|String|
-|reverse|String|
-|region|String|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|ip_address|`utf8`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|lb_id|`utf8`|
+|reverse|`utf8`|
+|region|`utf8`|
+|zone|`utf8`|

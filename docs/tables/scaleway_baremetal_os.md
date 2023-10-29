@@ -1,24 +1,24 @@
 # Table: scaleway_baremetal_os
 
+This table shows data for Scaleway Baremetal Os.
+
 The composite primary key for this table is (**zone**, **id**).
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|zone (PK)|String|
-|id (PK)|String|
-|name|String|
-|version|String|
-|logo_url|String|
-|ssh|JSON|
-|user|JSON|
-|password|JSON|
-|service_user|JSON|
-|service_password|JSON|
-|enabled|Bool|
-|license_required|Bool|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|zone (PK)|`utf8`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|version|`utf8`|
+|logo_url|`utf8`|
+|ssh|`json`|
+|user|`json`|
+|password|`json`|
+|service_user|`json`|
+|service_password|`json`|
+|enabled|`bool`|
+|license_required|`bool`|

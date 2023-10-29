@@ -1,5 +1,7 @@
 # Table: scaleway_security_groups
 
+This table shows data for Scaleway Security Groups.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -11,24 +13,22 @@ The following tables depend on scaleway_security_groups:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|description|String|
-|enable_default_security|Bool|
-|inbound_default_policy|String|
-|outbound_default_policy|String|
-|organization|String|
-|project|String|
-|tags|StringArray|
-|organization_default|Bool|
-|project_default|Bool|
-|creation_date|Timestamp|
-|modification_date|Timestamp|
-|servers|JSON|
-|stateful|Bool|
-|state|String|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|description|`utf8`|
+|enable_default_security|`bool`|
+|inbound_default_policy|`utf8`|
+|outbound_default_policy|`utf8`|
+|organization|`utf8`|
+|project|`utf8`|
+|tags|`list<item: utf8, nullable>`|
+|organization_default|`bool`|
+|project_default|`bool`|
+|creation_date|`timestamp[us, tz=UTC]`|
+|modification_date|`timestamp[us, tz=UTC]`|
+|servers|`json`|
+|stateful|`bool`|
+|state|`utf8`|
+|zone|`utf8`|

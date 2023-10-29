@@ -1,29 +1,29 @@
 # Table: scaleway_redis_clusters
 
+This table shows data for Scaleway Redis Clusters.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|project_id|String|
-|status|String|
-|version|String|
-|endpoints|JSON|
-|tags|StringArray|
-|node_type|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|tls_enabled|Bool|
-|cluster_settings|JSON|
-|acl_rules|JSON|
-|cluster_size|Int|
-|zone|String|
-|user_name|String|
-|upgradable_versions|StringArray|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|project_id|`utf8`|
+|status|`utf8`|
+|version|`utf8`|
+|endpoints|`json`|
+|tags|`list<item: utf8, nullable>`|
+|node_type|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|tls_enabled|`bool`|
+|cluster_settings|`json`|
+|acl_rules|`json`|
+|cluster_size|`int64`|
+|zone|`utf8`|
+|user_name|`utf8`|
+|upgradable_versions|`list<item: utf8, nullable>`|

@@ -1,5 +1,7 @@
 # Table: scaleway_k8s_nodes
 
+This table shows data for Scaleway K8s Nodes.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -10,20 +12,18 @@ This table depends on [scaleway_k8s_clusters](scaleway_k8s_clusters.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|pool_id|String|
-|cluster_id|String|
-|provider_id|String|
-|region|String|
-|name|String|
-|public_ip_v4|Inet|
-|public_ip_v6|Inet|
-|conditions|JSON|
-|status|String|
-|error_message|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|pool_id|`utf8`|
+|cluster_id|`utf8`|
+|provider_id|`utf8`|
+|region|`utf8`|
+|name|`utf8`|
+|public_ip_v4|`inet`|
+|public_ip_v6|`inet`|
+|conditions|`json`|
+|status|`utf8`|
+|error_message|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|

@@ -1,32 +1,32 @@
 # Table: scaleway_baremetal_offers
 
+This table shows data for Scaleway Baremetal Offers.
+
 The composite primary key for this table is (**zone**, **id**).
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|zone (PK)|String|
-|id (PK)|String|
-|name|String|
-|stock|String|
-|bandwidth|Int|
-|commercial_range|String|
-|price_per_hour|JSON|
-|price_per_month|JSON|
-|disks|JSON|
-|enable|Bool|
-|cpus|JSON|
-|memories|JSON|
-|quota_name|String|
-|persistent_memories|JSON|
-|raid_controllers|JSON|
-|incompatible_os_ids|StringArray|
-|subscription_period|String|
-|operation_path|String|
-|fee|JSON|
-|options|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|zone (PK)|`utf8`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|stock|`utf8`|
+|bandwidth|`int64`|
+|commercial_range|`utf8`|
+|price_per_hour|`json`|
+|price_per_month|`json`|
+|disks|`json`|
+|enable|`bool`|
+|cpus|`json`|
+|memories|`json`|
+|quota_name|`utf8`|
+|persistent_memories|`json`|
+|raid_controllers|`json`|
+|incompatible_os_ids|`list<item: utf8, nullable>`|
+|subscription_period|`utf8`|
+|operation_path|`utf8`|
+|fee|`json`|
+|options|`json`|

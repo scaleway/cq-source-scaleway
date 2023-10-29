@@ -1,21 +1,21 @@
 # Table: scaleway_vpc_private_networks
 
+This table shows data for Scaleway VPC Private Networks.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|organization_id|String|
-|project_id|String|
-|zone|String|
-|tags|StringArray|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|subnets|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|zone|`utf8`|
+|tags|`list<item: utf8, nullable>`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|subnets|`json`|

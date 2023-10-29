@@ -1,5 +1,7 @@
 # Table: scaleway_mnq_namespace_credentials
 
+This table shows data for Scaleway Mnq Namespace Credentials.
+
 The composite primary key for this table is (**id**, **namespace_id**).
 
 ## Relations
@@ -10,13 +12,11 @@ This table depends on [scaleway_mnq_namespaces](scaleway_mnq_namespaces.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|namespace_id (PK)|String|
-|protocol|String|
-|nats_credentials|JSON|
-|sqs_sns_credentials|JSON|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|namespace_id (PK)|`utf8`|
+|protocol|`utf8`|
+|nats_credentials|`json`|
+|sqs_sns_credentials|`json`|

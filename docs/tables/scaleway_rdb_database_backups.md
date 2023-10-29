@@ -1,26 +1,26 @@
 # Table: scaleway_rdb_database_backups
 
+This table shows data for Scaleway Rdb Database Backups.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|instance_id|String|
-|database_name|String|
-|name|String|
-|status|String|
-|size|Int|
-|expires_at|Timestamp|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|instance_name|String|
-|download_url|String|
-|download_url_expires_at|Timestamp|
-|region|String|
-|same_region|Bool|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|instance_id|`utf8`|
+|database_name|`utf8`|
+|name|`utf8`|
+|status|`utf8`|
+|size|`int64`|
+|expires_at|`timestamp[us, tz=UTC]`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|instance_name|`utf8`|
+|download_url|`utf8`|
+|download_url_expires_at|`timestamp[us, tz=UTC]`|
+|region|`utf8`|
+|same_region|`bool`|

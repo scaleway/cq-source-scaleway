@@ -2,5 +2,7 @@ dist/
 vendor/
 bin/
 cq-source-scaleway
+cloudquery
+cloudquery.log
 .DS_Store
 .idea

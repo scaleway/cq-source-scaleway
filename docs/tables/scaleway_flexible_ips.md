@@ -1,25 +1,25 @@
 # Table: scaleway_flexible_ips
 
+This table shows data for Scaleway Flexible IPs.
+
 The primary key for this table is **id**.
 
 ## Columns
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|organization_id|String|
-|project_id|String|
-|description|String|
-|tags|StringArray|
-|updated_at|Timestamp|
-|created_at|Timestamp|
-|status|String|
-|ip_address|JSON|
-|mac_address|JSON|
-|server_id|String|
-|reverse|String|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|description|`utf8`|
+|tags|`list<item: utf8, nullable>`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|created_at|`timestamp[us, tz=UTC]`|
+|status|`utf8`|
+|ip_address|`json`|
+|mac_address|`json`|
+|server_id|`utf8`|
+|reverse|`utf8`|
+|zone|`utf8`|

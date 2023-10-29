@@ -1,5 +1,7 @@
 # Table: scaleway_lbs
 
+This table shows data for Scaleway Lbs.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -15,27 +17,25 @@ The following tables depend on scaleway_lbs:
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|name|String|
-|description|String|
-|status|String|
-|instances|JSON|
-|organization_id|String|
-|project_id|String|
-|ip|JSON|
-|tags|StringArray|
-|frontend_count|Int|
-|backend_count|Int|
-|type|String|
-|subscriber|JSON|
-|ssl_compatibility_level|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|private_network_count|Int|
-|route_count|Int|
-|region|String|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|name|`utf8`|
+|description|`utf8`|
+|status|`utf8`|
+|instances|`json`|
+|organization_id|`utf8`|
+|project_id|`utf8`|
+|ip|`json`|
+|tags|`list<item: utf8, nullable>`|
+|frontend_count|`int64`|
+|backend_count|`int64`|
+|type|`utf8`|
+|subscriber|`json`|
+|ssl_compatibility_level|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|private_network_count|`int64`|
+|route_count|`int64`|
+|region|`utf8`|
+|zone|`utf8`|

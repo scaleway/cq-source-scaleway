@@ -1,5 +1,7 @@
 # Table: scaleway_vpcgw_gateway_networks
 
+This table shows data for Scaleway Vpcgw Gateway Networks.
+
 The primary key for this table is **id**.
 
 ## Relations
@@ -10,19 +12,17 @@ This table depends on [scaleway_vpcgw_gateways](scaleway_vpcgw_gateways.md).
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|id (PK)|String|
-|created_at|Timestamp|
-|updated_at|Timestamp|
-|gateway_id|String|
-|private_network_id|String|
-|mac_address|String|
-|enable_masquerade|Bool|
-|status|String|
-|dhcp|JSON|
-|enable_dhcp|Bool|
-|address|JSON|
-|zone|String|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|id (PK)|`utf8`|
+|created_at|`timestamp[us, tz=UTC]`|
+|updated_at|`timestamp[us, tz=UTC]`|
+|gateway_id|`utf8`|
+|private_network_id|`utf8`|
+|mac_address|`utf8`|
+|enable_masquerade|`bool`|
+|status|`utf8`|
+|dhcp|`json`|
+|enable_dhcp|`bool`|
+|address|`json`|
+|zone|`utf8`|
