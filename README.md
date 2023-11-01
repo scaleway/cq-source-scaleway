@@ -107,9 +107,11 @@ cp README.md docs/overview.md
 # -m parameter adds release notes message, output is created in dist/ directory
 go run main.go package -m "Release v1.0.0" v1.0.0 .
 
-# Login to cloudquery hub and publish the plugin
+# Login to cloudquery hub and publish the new version
 cloudquery login -t scaleway
 cloudquery plugin publish --finalize
 ```
+
+After publishing the new version, it will [show up](https://hub.cloudquery.io/plugins/source/scaleway/scaleway) in the [hub](https://hub.cloudquery.io/).
 
 For more information please refer to the official [Publishing a Plugin to the Hub](https://www.cloudquery.io/docs/developers/publishing-a-plugin-to-the-hub) guide.
