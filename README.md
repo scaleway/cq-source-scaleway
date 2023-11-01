@@ -98,7 +98,8 @@ To customize the release notes, see the Go releaser [changelog configuration doc
 
 ### Publish a new version to the Cloudquery Hub
 
-After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands:
+After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands.
+Replace `v1.0.0` with the new version number.
 
 ```bash
 # Use the README as main documentation
