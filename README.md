@@ -66,7 +66,7 @@ spec:
   Timeout for requests against the Scaleway API endpoint.
 
 - `concurrency` (int, optional, default: `1000`):
-  A best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
+  Best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
 
 ## Development
 
@@ -95,3 +95,18 @@ make gen-docs
 
 Once the tag is pushed, a new GitHub Actions workflow will be triggered to build the release binaries and create the new release on GitHub.
 To customize the release notes, see the Go releaser [changelog configuration docs](https://goreleaser.com/customization/changelog/#changelog).
+
+### Publish a new version to the Cloudquery Hub
+
+After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands:
+
+```bash
+# Use the README as main documentation
+cp README.md docs/overview.md
+# -m parameter adds release notes message, output is created in dist/ directory
+go run main.go package -m "Release v1.0.0" v1.0.0 .
+
+# Login to cloudquery hub and publish the plugin
+cloudquery login -t scaleway
+cloudquery plugin publish --finalize
+```
