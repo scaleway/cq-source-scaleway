@@ -49,7 +49,6 @@ spec:
     - "scaleway_marketplace_image_versions"
   destinations: 
     - "postgresql"
-  backend: local
   spec:
     # plugin spec section
 ```
