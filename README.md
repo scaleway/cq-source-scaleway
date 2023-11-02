@@ -49,7 +49,6 @@ spec:
     - "scaleway_marketplace_image_versions"
   destinations: 
     - "postgresql"
-  backend: local
   spec:
     # plugin spec section
 ```
@@ -66,7 +65,7 @@ spec:
   Timeout for requests against the Scaleway API endpoint.
 
 - `concurrency` (int, optional, default: `1000`):
-  A best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
+  Best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
 
 ## Development
 
@@ -91,7 +90,27 @@ make gen-docs
 ### Release a new version
 
 1. Run `git tag v1.0.0` to create a new tag for the release (replace `v1.0.0` with the new version number)
-2. Run `git push origin v1.0.0` to push the tag to GitHub  
+2. Run `git push origin v1.0.0` to push the tag to GitHub
 
 Once the tag is pushed, a new GitHub Actions workflow will be triggered to build the release binaries and create the new release on GitHub.
 To customize the release notes, see the Go releaser [changelog configuration docs](https://goreleaser.com/customization/changelog/#changelog).
+
+### Publish a new version to the Cloudquery Hub
+
+After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands.
+Replace `v1.0.0` with the new version number.
+
+```bash
+# Use the README as main documentation
+cp README.md docs/overview.md
+# -m parameter adds release notes message, output is created in dist/ directory
+go run main.go package -m "Release v1.0.0" v1.0.0 .
+
+# Login to cloudquery hub and publish the new version
+cloudquery login -t scaleway
+cloudquery plugin publish --finalize
+```
+
+After publishing the new version, it will [show up](https://hub.cloudquery.io/plugins/source/scaleway/scaleway) in the [hub](https://hub.cloudquery.io/).
+
+For more information please refer to the official [Publishing a Plugin to the Hub](https://www.cloudquery.io/docs/developers/publishing-a-plugin-to-the-hub) guide.
