@@ -17,6 +17,11 @@ gen-docs: build
 	cloudquery tables --format markdown --output-dir docs/ test/config.yml
 	mv -vf docs/scaleway docs/tables
 
+.PHONY: dist
+dist:
+	cp -vf README.md > docs/overview.md
+	go run main.go package -m "Release ${VERSION}" ${VERSION} .
+
 .PHONY: lint
 lint:
 	@golangci-lint run --timeout 10m --verbose

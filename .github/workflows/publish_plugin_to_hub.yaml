@@ -1,0 +1,43 @@
+name: Publish plugin to hub
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  publish-plugin-to-hub:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-1.21.1-publish-plugin-to-hub-cache
+          restore-keys: |
+            ${{ runner.os }}-go-1.21.1-publish-plugin-to-hub-cache
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: Run package command
+        run: |
+          make dist
+
+      - name: Setup CloudQuery
+        uses: cloudquery/setup-cloudquery@v3
+        with:
+          version: v3.28.0
+
+      - name: Publish plugin to hub
+        run: |
+          mkdir -p ~/.local/share/cloudquery
+          echo ${{ secrets.CQ_CI_CLOUDQUERY_HUB_TOKEN }} > ~/.local/share/cloudquery/token
+          cloudquery plugin publish --finalize
