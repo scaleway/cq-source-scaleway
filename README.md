@@ -97,19 +97,9 @@ To customize the release notes, see the Go releaser [changelog configuration doc
 
 ### Publish a new version to the Cloudquery Hub
 
-After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands.
-Replace `v1.0.0` with the new version number.
+Tagging a new release should invoke the GitHub Actions workflow to publish to the [Cloudquery Hub](https://hub.cloudquery.io/).
 
-```bash
-# Use the README as main documentation
-cp README.md docs/overview.md
-# -m parameter adds release notes message, output is created in dist/ directory
-go run main.go package -m "Release v1.0.0" v1.0.0 .
-
-# Login to cloudquery hub and publish the new version
-cloudquery login -t scaleway
-cloudquery plugin publish --finalize
-```
+`CQ_CI_CLOUDQUERY_HUB_TOKEN` should be set up in GitHub secrets beforehand, with a valid [API key](https://www.cloudquery.io/docs/deployment/generate-api-key).
 
 After publishing the new version, it will [show up](https://hub.cloudquery.io/plugins/source/scaleway/scaleway) in the [hub](https://hub.cloudquery.io/).
 
