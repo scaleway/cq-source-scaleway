@@ -29,7 +29,7 @@ jobs:
 
       - name: Run package command
         run: |
-          make dist
+          VERSION=${{ github.ref_name }} make dist
 
       - name: Setup CloudQuery
         uses: cloudquery/setup-cloudquery@v3
