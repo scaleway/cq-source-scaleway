@@ -38,6 +38,4 @@ jobs:
 
       - name: Publish plugin to hub
         run: |
-          mkdir -p ~/.local/share/cloudquery
-          echo ${{ secrets.CQ_CI_CLOUDQUERY_HUB_TOKEN }} > ~/.local/share/cloudquery/token
-          cloudquery plugin publish --finalize
+          CLOUDQUERY_API_KEY="${{ secrets.CQ_CI_CLOUDQUERY_API_KEY }}" cloudquery plugin publish --finalize
