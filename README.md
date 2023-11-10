@@ -55,16 +55,20 @@ spec:
 
 ### Plugin Spec
 
-- `regions` (list of string, optional. Defaults to all regions):
+- `regions` (`[]string`) (optional) (default: all regions)
+
   List of regions to query.
 
-- `zones` (list of string, optional. Defaults to all zones):
+- `zones` (`[]string`) (optional) (default: to all zones)
+
   List of zones to query.
 
-- `timeout_secs` (integer in seconds, optional. Default: `10`):
+- `timeout_secs` (`integer` in seconds) (optional) (default: `10`)
+
   Timeout for requests against the Scaleway API endpoint.
 
-- `concurrency` (int, optional, default: `1000`):
+- `concurrency` (`integer`) (optional) (default: `1000`)
+
   Best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
 
 ## Development
@@ -99,7 +103,7 @@ To customize the release notes, see the Go releaser [changelog configuration doc
 
 Tagging a new release should invoke the GitHub Actions workflow to publish to the [Cloudquery Hub](https://hub.cloudquery.io/).
 
-`CQ_CI_CLOUDQUERY_HUB_TOKEN` should be set up in GitHub secrets beforehand, with a valid [API key](https://www.cloudquery.io/docs/deployment/generate-api-key).
+`CQ_CI_CLOUDQUERY_API_KEY` should be set up in GitHub secrets (Settings `->` Security `->` Secrets and variables `->` Actions) beforehand, with a valid [API key](https://www.cloudquery.io/docs/deployment/generate-api-key).
 
 After publishing the new version, it will [show up](https://hub.cloudquery.io/plugins/source/scaleway/scaleway) in the [hub](https://hub.cloudquery.io/).
 
