@@ -1,14 +1,4 @@
-# CloudQuery Scaleway Source Plugin
-
-[![test](https://github.com/scaleway/cq-source-scaleway/actions/workflows/test.yaml/badge.svg)](https://github.com/scaleway/cq-source-scaleway/actions/workflows/test.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/scaleway/cq-source-scaleway)](https://goreportcard.com/report/github.com/scaleway/cq-source-scaleway)
-
-A [Scaleway](https://scaleway.com/) source plugin for CloudQuery that loads data from Scaleway to any database, data warehouse or data lake supported by [CloudQuery](https://cloudquery.io/), such as PostgreSQL, BigQuery, Athena, and many more.
-
-## Links
-
- - [CloudQuery Quickstart Guide](https://cloudquery.io/docs/quickstart)
- - [Supported Tables](docs/tables/README.md)
+A [Scaleway](https://scaleway.com/) source plugin for CloudQuery that loads data from Scaleway to any database, data warehouse or data lake supported by CloudQuery, such as PostgreSQL, BigQuery, Athena, and many more.
 
 ## Authentication
 
@@ -26,18 +16,19 @@ Env vars override config values if both are set. By default all regions and zone
 ## Incremental Syncing
 
 The Scaleway plugin supports incremental syncing. This means that only new data will be fetched from Scaleway and loaded into your destination for supported tables (support depending on API endpoint). This is done by keeping track of the last item fetched and only fetching data that has been created since then.
-To enable this, `backends_options` must be set in the spec (as shown below). This is documented in the [Managing Incremental Tables](https://cloudquery.io/docs/advanced-topics/managing-incremental-tables) section.
+To enable this, `backend_options` must be set in the spec (as shown below). This is documented in the [Managing Incremental Tables](https://cloudquery.io/docs/advanced-topics/managing-incremental-tables) section.
 
 ## Configuration
 
-The following source configuration file will sync all data from Scaleway to a PostgreSQL database. See [the CloudQuery Quickstart](https://www.cloudquery.io/docs/quickstart) for more information on how to configure the source and destination.
+The following source configuration file will sync all data from Scaleway to a PostgreSQL database. See [the CloudQuery Quickstart](https://cloudquery.io/docs/quickstart) for more information on how to configure the source and destination.
 
 ```yaml
 kind: source
 spec:
   name: "scaleway"
+  registry: "cloudquery"
   path: "scaleway/scaleway"
-  version: "v2.0.0"
+  version: "VERSION_SOURCE_SCALEWAY"
   # use this to enable incremental syncing
   # backend_options:
   #   table_name: "cq_state_scaleway"
