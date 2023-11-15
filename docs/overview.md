@@ -28,7 +28,7 @@ spec:
   name: "scaleway"
   registry: "cloudquery"
   path: "scaleway/scaleway"
-  version: "VERSION_SOURCE_SCALEWAY"
+  version: "v2.0.0"
   # use this to enable incremental syncing
   # backend_options:
   #   table_name: "cq_state_scaleway"
