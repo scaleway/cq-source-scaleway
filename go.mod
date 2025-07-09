@@ -3,15 +3,13 @@ module github.com/scaleway/cq-source-scaleway
 go 1.24.4
 
 require (
-	github.com/apache/arrow/go/v14 v14.0.0-20231031200323-c49e24273160
-	github.com/cloudquery/plugin-sdk/v4 v4.87.0
+	github.com/apache/arrow/go/v18 v18.0.0-20241007013041-ab95a4d25142
+	github.com/cloudquery/plugin-sdk/v4 v4.87.1
 	github.com/gorilla/mux v1.8.1
 	github.com/rs/zerolog v1.34.0
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.13
 	google.golang.org/grpc v1.73.0
 )
-
-replace github.com/apache/arrow/go/v14 => github.com/cloudquery/arrow/go/v14 v14.0.0-20231023001216-f46436fa3561
 
 require (
 	github.com/adrg/xdg v0.5.3 // indirect
@@ -37,7 +35,7 @@ require (
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/cenkalti/backoff/v5 v5.0.2 // indirect
 	github.com/cloudquery/cloudquery-api-go v1.13.11 // indirect
-	github.com/cloudquery/codegen v0.3.29 // indirect
+	github.com/cloudquery/codegen v0.3.30 // indirect
 	github.com/cloudquery/plugin-pb-go v1.26.15 // indirect
 	github.com/cloudquery/plugin-sdk/v2 v2.7.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
