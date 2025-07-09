@@ -32,7 +32,7 @@ jobs:
           VERSION=${{ github.ref_name }} make dist
 
       - name: Setup CloudQuery
-        uses: cloudquery/setup-cloudquery@v3
+        uses: cloudquery/setup-cloudquery@v4
         with:
           version: v3.28.0
 

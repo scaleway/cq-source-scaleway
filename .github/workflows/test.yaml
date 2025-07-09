@@ -26,7 +26,7 @@ jobs:
           version: v1.54.2
       - name: Setup CloudQuery
         if: github.event_name == 'pull_request'
-        uses: cloudquery/setup-cloudquery@v3
+        uses: cloudquery/setup-cloudquery@v4
         with:
           version: v3.27.1
       - name: Get dependencies
