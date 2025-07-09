@@ -30,14 +30,15 @@ linters:
 
     errcheck:
       check-blank: false
-      ignore: fmt:.*,[rR]ead|[wW]rite|[cC]lose,io:Copy
+      exclude-functions:
+        - 'fmt:.*,[rR]ead|[wW]rite|[cC]lose,io:Copy'
 
     dupl:
       # tokens count to trigger issue, 150 by default
       threshold: 500
 
     misspell:
-      ignore-words:
+      ignore-rules:
         - hdinsight
 
     revive:
@@ -92,6 +93,21 @@ linters:
       - resources/forks
       - codegen
 
+    rules:
+      # Exclude some linters from running on tests files.
+      - path: _test\.go
+        linters:
+          - dupl
+          - gocritic
+        # Exclude some linters from running on resource files.
+      - path: resources(\\|\/).*\.go
+        linters:
+          - dupl
+      # Exclude some linters from running on services files.
+      - path: services\.go
+        linters:
+          - dupl
+
 formatters:
   enable:
     - gofmt
@@ -111,19 +127,3 @@ formatters:
       - client/mocks
       - resources/forks
       - codegen
-
-issues:
-  exclude-rules:
-    # Exclude some linters from running on tests files.
-    - path: _test\.go
-      linters:
-        - dupl
-        - gocritic
-      # Exclude some linters from running on resource files.
-    - path: resources(\\|\/).*\.go
-      linters:
-        - dupl
-    # Exclude some linters from running on services files.
-    - path: services\.go
-      linters:
-        - dupl
