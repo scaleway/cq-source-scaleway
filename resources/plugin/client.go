@@ -17,8 +17,6 @@ import (
 	"github.com/cloudquery/plugin-sdk/v4/transformers"
 	internalPlugin "github.com/scaleway/cq-source-scaleway/plugin"
 	"github.com/scaleway/scaleway-sdk-go/scw"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/rs/zerolog"
 	"github.com/scaleway/cq-source-scaleway/client"
@@ -46,19 +44,14 @@ import (
 	"github.com/scaleway/cq-source-scaleway/resources/services/vpcgw"
 )
 
-const (
-	maxMsgSize = 100 * 1024 * 1024 // 100 MiB
-)
-
 type Client struct {
-	logger      zerolog.Logger
-	config      client.Spec
-	tables      schema.Tables
-	options     plugin.NewClientOptions
-	scheduler   *scheduler.Scheduler
-	backendConn *grpc.ClientConn
-	services    *scw.Client
-	orgID       string
+	logger    zerolog.Logger
+	config    client.Spec
+	tables    schema.Tables
+	options   plugin.NewClientOptions
+	scheduler *scheduler.Scheduler
+	services  *scw.Client
+	orgID     string
 
 	plugin.UnimplementedDestination
 }
@@ -73,28 +66,11 @@ func (c *Client) Sync(ctx context.Context, options plugin.SyncOptions, res chan<
 		return err
 	}
 
-	var stateClient state.Client
-	if options.BackendOptions == nil {
-		c.logger.Info().Msg("No backend options provided, using no state backend")
-		stateClient = &state.NoOpClient{}
-		c.backendConn = nil
-	} else {
-		c.backendConn, err = grpc.DialContext(ctx, options.BackendOptions.Connection,
-			grpc.WithTransportCredentials(insecure.NewCredentials()),
-			grpc.WithDefaultCallOptions(
-				grpc.MaxCallRecvMsgSize(maxMsgSize),
-				grpc.MaxCallSendMsgSize(maxMsgSize),
-			),
-		)
-		if err != nil {
-			return fmt.Errorf("failed to dial grpc source plugin at %s: %w", options.BackendOptions.Connection, err)
-		}
-		stateClient, err = state.NewClient(ctx, c.backendConn, options.BackendOptions.TableName)
-		if err != nil {
-			return fmt.Errorf("failed to create state client: %w", err)
-		}
-		c.logger.Info().Str("table_name", options.BackendOptions.TableName).Msg("Connected to state backend")
+	stateClient, err := state.NewConnectedClient(ctx, options.BackendOptions)
+	if err != nil {
+		return err
 	}
+	defer stateClient.Close() //nolint:errcheck
 
 	schedulerClient := client.New(c.logger, c.config, c.orgID, c.services, stateClient)
 	err = c.scheduler.Sync(ctx, schedulerClient, tt, res, scheduler.WithSyncDeterministicCQID(options.DeterministicCQID))
@@ -113,9 +89,6 @@ func (c *Client) Tables(_ context.Context, options plugin.TableOptions) (schema.
 }
 
 func (c *Client) Close(_ context.Context) error {
-	if c.backendConn != nil {
-		return c.backendConn.Close()
-	}
 	return nil
 }
 
