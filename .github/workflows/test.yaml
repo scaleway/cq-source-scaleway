@@ -23,7 +23,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v8
         with:
-          version: v2.1.6
+          version: v2.2.1
           args: --timeout 5m
       - name: Setup CloudQuery
         if: github.event_name == 'pull_request'

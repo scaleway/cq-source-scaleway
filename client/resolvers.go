@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 
-	"github.com/apache/arrow/go/v14/arrow"
+	"github.com/apache/arrow-go/v18/arrow"
 	"github.com/cloudquery/plugin-sdk/v4/schema"
 )
 
