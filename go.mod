@@ -3,12 +3,11 @@ module github.com/scaleway/cq-source-scaleway
 go 1.24.4
 
 require (
-	github.com/apache/arrow-go/v18 v18.3.1
+	github.com/apache/arrow-go/v18 v18.4.0
 	github.com/cloudquery/plugin-sdk/v4 v4.87.2
 	github.com/gorilla/mux v1.8.1
 	github.com/rs/zerolog v1.34.0
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.13
-	google.golang.org/grpc v1.73.0
 )
 
 require (
@@ -37,7 +36,7 @@ require (
 	github.com/cloudquery/codegen v0.3.31 // indirect
 	github.com/cloudquery/plugin-pb-go v1.26.15 // indirect
 	github.com/cloudquery/plugin-sdk/v2 v2.7.0 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -51,13 +50,13 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/invopop/jsonschema v0.13.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
-	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.11 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/oapi-codegen/runtime v1.1.1 // indirect
 	github.com/pierrec/lz4/v4 v4.1.22 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/samber/lo v1.49.1 // indirect
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2 // indirect
 	github.com/spf13/cobra v1.9.0 // indirect
@@ -89,6 +88,7 @@ require (
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250519155744-55703ea1f237 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250519155744-55703ea1f237 // indirect
+	google.golang.org/grpc v1.73.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
